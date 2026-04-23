@@ -12,3 +12,13 @@ stuff
 [5] REAL-WORLD CONSEQUENCES
 [6] USER CONTROL / CALL TO ACTION
 [7] SOURCES + METHODOLOGY
+
+
+ai-agent-blog/
+├── index.html              # main blog
+├── style.css
+├── section2-agent.html     # external interactive section 2
+├── section2.js
+├── section3-defend.html    # interactive: ripoff Invaders w/ diologe
+├── section3.js
+└── assets/

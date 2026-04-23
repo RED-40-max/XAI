@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Defend the Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <h1>Defend the Agent</h1>
+    <p>Click a bug to identify the type of failure.</p>
+
+    <div class="card-grid">
+      <button class="card" onclick="showBug('prompt')">Bug 1: Prompt Injection</button>
+      <button class="card" onclick="showBug('internal')">Bug 2: Internal Dysfunction</button>
+      <button class="card" onclick="showBug('autonomy')">Bug 3: Autonomy Overreach</button>
+    </div>
+
+    <section id="bug-output" class="output-box">
+      <h2>Bug Scanner Ready</h2>
+      <p>Select a bug to inspect it.</p>
+    </section>
+
+    <p><a href="index.html">← Back to Blog</a></p>
+  </main>
+
+  <script src="section3.js"></script>
+</body>
+</html>
