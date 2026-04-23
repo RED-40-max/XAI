@@ -1,40 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
+  <header class="hero">
+    <h1>TITLE OF BLOG</h1>
+    <p>Subtitle of the blog or whatever idk</p>
+    <p class="byline">By Roshinikitha · WRIT 1301</p>
+  </header>
 
-
-
-<section id="hook">
-    <div class="hook-wrap">
-      <h1 class="hook-title">
-        My Dad replaced himself with an AI chatbot.
-      </h1>
-
+  <section id="hook" class="scrolly">
+    <div class="scrolly__graphic">
       <div class="phone">
         <div class="phone-header">Messages</div>
-        <div id="chat" class="chat"></div>
+
+        <div id="chat" class="chat">
+          <div id="bubble" class="bubble narration">
+            it was a regular tuesday morning, when i finally got back from my classes and was able to catch up on all my texts
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scrolly__text">
+      <div class="step" data-type="narration" data-text="it was a regular tuesday morning, when i finally got back from my classes and was able to catch up on all my texts">
+        <p>Start of animation.</p>
+      </div>
+
+      <div class="step" data-type="narration" data-text="i decided to check on my dad first, since he always seems to have something interesting for me!">
+        <p>Checking on Dad.</p>
+      </div>
+
+      <div class="step" data-type="me" data-text="Appa, i’m getting an error on the link u sent me, could u send me a diff one?">
+        <p>I text him.</p>
+      </div>
+
+      <div class="step" data-type="dad" data-text="That sounds like a plan, Nikki; technology hiccups are always a bit of a challenge! 😊">
+        <p>The reply feels wrong.</p>
+      </div>
+
+      <div class="step" data-type="reaction" data-text="that is not my dad.">
+        <p>Something is off.</p>
+      </div>
+
+      <div class="step" data-type="reaction" data-text="he doesn’t talk like that. he barely uses emojis. and definitely not that one.">
+        <p>The realization lands.</p>
+      </div>
+
+      <div class="step" data-type="me" data-text="Bro…">
+        <p>Final reaction.</p>
       </div>
     </div>
   </section>
 
-  <script src="hook.js"></script>
-
-
-
-<section>
+  <section class="normal-section">
     <h2>Section 2: What is an AI Agent?</h2>
     <p>
-      To make the internal structure of an AI agent easier to understand, I created
-      a separate interactive page where users can explore the four major components:
-      planning, tools, memory, and reflection.
+      To make the internal structure of an AI agent easier to understand, I also created a separate interactive page.
     </p>
     <a href="section2-agent.html" class="button">Open Section 2 Interactive</a>
   </section>
 
-  <section>
+  <section class="normal-section">
     <h2>Section 3: Defend the Agent</h2>
     <p>
-      I also created a separate interactive page where users identify different
-      types of AI agent failure, including prompt injection, internal dysfunction,
-      and autonomy overreach.
+      I also created a separate interactive page where users can explore how different AI failures happen and how to recognize them.
     </p>
     <a href="section3-defend.html" class="button">Open Section 3 Interactive</a>
   </section>
+
+  <!-- Scrollama CDN -->
+  <script src="https://unpkg.com/scrollama"></script>
+  <script src="hook.js"></script>
+</body>
+</html>

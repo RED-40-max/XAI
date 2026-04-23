@@ -104,3 +104,41 @@ const lines = [
       chat.scrollTo({ top: chat.scrollHeight, behavior: "smooth" });
     }, i * 1150);
   });
+
+  const steps = document.querySelectorAll(".step");
+const bubble = document.getElementById("bubble");
+
+// official pattern: create a scrollama instance
+const scroller = scrollama();
+
+function updateBubble(type, text) {
+  bubble.classList.add("fade-out");
+
+  setTimeout(() => {
+    bubble.className = `bubble ${type} fade-in`;
+    bubble.textContent = text;
+
+    requestAnimationFrame(() => {
+      bubble.classList.remove("fade-in", "fade-out");
+    });
+  }, 180);
+}
+
+function handleStepEnter(response) {
+  const step = response.element;
+  const type = step.dataset.type;
+  const text = step.dataset.text;
+
+  steps.forEach((s) => s.classList.remove("is-active"));
+  step.classList.add("is-active");
+
+  updateBubble(type, text);
+}
+
+scroller
+  .setup({
+    step: ".step",
+    offset: 0.6,
+    debug: false
+  })
+  .onStepEnter(handleStepEnter);
