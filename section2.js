@@ -1,28 +1,73 @@
-function showInfo(part) {
-    const output = document.getElementById("output");
+const output = document.getElementById("output");
+const buildCount = document.getElementById("buildCount");
+const progressBar = document.getElementById("progressBar");
+const partButtons = document.querySelectorAll("[data-part]");
 
-    const info = {
-      planning: `
-        <h2>Planning</h2>
-        <p>Planning breaks a goal into smaller steps so the agent can act systematically.</p>
-        <p><strong>Analogy:</strong> Like writing a recipe before cooking. If one step is wrong, the rest of the process can go wrong too.</p>
-      `,
-      tools: `
-        <h2>Tools</h2>
-        <p>Tools let the agent act beyond text generation, like using APIs, files, search, or other systems.</p>
-        <p><strong>Analogy:</strong> Like giving someone your phone, keys, and credit card to run errands for you.</p>
-      `,
-      memory: `
-        <h2>Memory</h2>
-        <p>Memory stores and retrieves context so the agent can build on past steps.</p>
-        <p><strong>Analogy:</strong> Like a notebook the system keeps referring back to, even if something in it is wrong.</p>
-      `,
-      reflection: `
-        <h2>Reflection</h2>
-        <p>Reflection helps the agent review past actions and adjust future behavior.</p>
-        <p><strong>Analogy:</strong> Like checking your test after finishing, except sometimes you incorrectly convince yourself your wrong answers are right.</p>
-      `
-    };
+const selectedParts = new Set();
 
-    output.innerHTML = info[part];
+const partInfo = {
+  goal: {
+    title: "Goal Parser",
+    desc: "This reads your request and turns it into smaller tasks. If the goal is misunderstood, everything else can drift.",
+    analogy: "Like reading a recipe title before cooking."
+  },
+  memory: {
+    title: "Memory Bank",
+    desc: "This stores earlier facts so the agent can stay consistent across multiple steps.",
+    analogy: "Like keeping sticky notes on your desk while working."
+  },
+  tools: {
+    title: "Tool Belt",
+    desc: "This lets the agent do actions beyond text, like search, files, API calls, or simple scripts.",
+    analogy: "Like having a calculator, map, and flashlight in your backpack."
+  },
+  safety: {
+    title: "Safety Guard",
+    desc: "This checks what the agent should avoid. It cannot catch everything, but it reduces risky behavior.",
+    analogy: "Like a gatekeeper who asks, 'Should we really do this?'"
+  },
+  feedback: {
+    title: "Feedback Loop",
+    desc: "This helps the agent check results and improve on the next attempt.",
+    analogy: "Like proofreading your own draft before submitting it."
   }
+};
+
+function renderPart(partKey) {
+  const part = partInfo[partKey];
+  output.innerHTML = `
+    <h2>${part.title}</h2>
+    <p>${part.desc}</p>
+    <p><strong>Simple analogy:</strong> ${part.analogy}</p>
+  `;
+
+  selectedParts.add(partKey);
+  updateProgress();
+}
+
+function updateProgress() {
+  const count = selectedParts.size;
+  const percent = (count / 5) * 100;
+  buildCount.textContent = String(count);
+  progressBar.style.width = `${percent}%`;
+
+  if (count === 5) {
+    output.innerHTML += `
+      <p><strong>Factory Complete:</strong> Your mini agent now has goals, memory, tools, safety, and feedback.</p>
+    `;
+  }
+}
+
+partButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const partKey = button.dataset.part;
+    renderPart(partKey);
+  });
+});
+
+if (window.AOS) {
+  AOS.init({
+    once: true,
+    duration: 700
+  });
+}

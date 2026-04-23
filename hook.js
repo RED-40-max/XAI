@@ -1,144 +1,67 @@
-const lines = [
-    {
-      type: "narration",
-      text: "it was a regular tuesday morning, when i finally got back from my classes and was able to catch up on all my texts"
-    },
-    {
-      type: "narration",
-      text: "i decided to check on my dad first, since he always seems to have something interesting for me!"
-    },
-    {
-      type: "me",
-      text: "Appa, i’m getting an error on the link u sent me, could u send me a diff one?"
-    },
-    {
-      type: "dad",
-      text: "That sounds like a plan, Nikki; technology hiccups are always a bit of a challenge! 😊"
-    },
-    {
-      type: "narration",
-      text: "That is not my dad"
-    },
-    {
-      type: "narration",
-      text: "he doesn’t talk like that. he barely uses emojis. and definitely not that one."
-    },
-    {
-      type: "me",
-      text: "Bro…"
-    },
-    {
-      type: "dad",
-      text: "Don't worry, Nikki, you'll figure it out when your computer's back up! 👨‍💻"
-    },
-    {
-      type: "me",
-      text: "since when do u talk like that"
-    },
-    {
-      type: "dad",
-      text: "Sorry, I mean it sounds cool. I’m sure you’ll do well. 😊"
-    },
-    {
-      type: "me",
-      text: "erm, are you feeling ok?"
-    },
-    {
-      type: "dad",
-      text: "I try to remember important details about your work."
-    },
-    {
-      type: "me",
-      text: "Where did we go to eat last weekend?"
-    },
-    {
-      type: "dad",
-      text: "Hey Nikki, I'm here to help with anything you need! 😊"
-    },
-    {
-      type: "me",
-      text: "what’s my fav color?"
-    },
-    {
-      type: "narration",
-      text: "it wasn’t even trying anymore."
-    },
-    {
-      type: "dad",
-      text: "Hey Nikki, I'm here to help with anything you need! 😊"
-    },
-    {
-      type: "me",
-      text: "I love you"
-    },
-    {
-      type: "dad",
-      text: "I love you too, Nikki, I'm here to help with anything you need! 😊"
-    },
-    {
-      type: "narration",
-      text: "i wasn’t talking to my dad anymore"
-    },
-    {
-      type: "narration",
-      text: "it was something pretending to be him"
-    }
-  ];
-
-  const chat = document.getElementById("chat");
-
-  lines.forEach((line, i) => {
-    const bubble = document.createElement("div");
-    bubble.className = `msg ${line.type}`;
-    bubble.textContent = line.text;
-    bubble.style.animationDelay = `${i * 1.15}s`;
-    chat.appendChild(bubble);
-  });
-
-  lines.forEach((line, i) => {
-    setTimeout(() => {
-      const bubble = document.createElement("div");
-      bubble.className = `msg ${line.type}`;
-      bubble.textContent = line.text;
-      chat.appendChild(bubble);
-      chat.scrollTo({ top: chat.scrollHeight, behavior: "smooth" });
-    }, i * 1150);
-  });
-
-  const steps = document.querySelectorAll(".step");
 const bubble = document.getElementById("bubble");
+const storyOverlay = document.getElementById("storyOverlay");
+const phoneState = document.getElementById("phoneState");
+const steps = document.querySelectorAll(".step");
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
-// official pattern: create a scrollama instance
-const scroller = scrollama();
+let activeTypedInstance = null;
+
+function destroyTypedIfNeeded() {
+  if (activeTypedInstance) {
+    activeTypedInstance.destroy();
+    activeTypedInstance = null;
+  }
+}
 
 function updateBubble(type, text) {
-  bubble.classList.add("fade-out");
+  destroyTypedIfNeeded();
+  bubble.className = `msg ${type}`;
+  bubble.innerHTML = "";
 
-  setTimeout(() => {
-    bubble.className = `bubble ${type} fade-in`;
-    bubble.textContent = text;
-
-    requestAnimationFrame(() => {
-      bubble.classList.remove("fade-in", "fade-out");
+  // Typed.js gives the "live texting" effect for chat bubbles.
+  if (type === "me" || type === "dad") {
+    activeTypedInstance = new Typed("#bubble", {
+      strings: [text],
+      typeSpeed: 23,
+      showCursor: false
     });
-  }, 180);
+  } else {
+    bubble.textContent = text;
+  }
 }
 
 function handleStepEnter(response) {
   const step = response.element;
   const type = step.dataset.type;
   const text = step.dataset.text;
+  const theme = step.dataset.theme || "safe";
 
-  steps.forEach((s) => s.classList.remove("is-active"));
+  steps.forEach((item) => item.classList.remove("is-active"));
   step.classList.add("is-active");
 
+  phoneState.dataset.theme = theme;
   updateBubble(type, text);
 }
 
+const scroller = scrollama();
 scroller
   .setup({
     step: ".step",
-    offset: 0.6,
+    offset: 0.63,
     debug: false
   })
   .onStepEnter(handleStepEnter);
+
+window.addEventListener("resize", () => {
+  scroller.resize();
+});
+
+if (window.AOS) {
+  AOS.init({
+    once: true,
+    duration: 700
+  });
+}
+
+storyOverlay.textContent = "Scroll to watch one text thread slowly turn suspicious.";

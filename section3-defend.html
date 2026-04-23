@@ -3,28 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Defend the Agent</title>
+  <title>Defend the Agent Game</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <main class="page">
-    <h1>Defend the Agent</h1>
-    <p>Click a bug to identify the type of failure.</p>
+  <main class="page shell">
+    <p class="eyebrow">Section 3</p>
+    <h1 data-aos="fade-up">Defend the Agent</h1>
+    <p data-aos="fade-up" data-aos-delay="80">
+      Move with arrow keys and press space to shoot. Each invader bug stands for a common AI failure mode.
+    </p>
 
-    <div class="card-grid">
-      <button class="card" onclick="showBug('prompt')">Bug 1: Prompt Injection</button>
-      <button class="card" onclick="showBug('internal')">Bug 2: Internal Dysfunction</button>
-      <button class="card" onclick="showBug('autonomy')">Bug 3: Autonomy Overreach</button>
+    <div class="defense-panel" data-aos="fade-up" data-aos-delay="160">
+      <canvas id="gameCanvas" width="760" height="420"></canvas>
+      <div class="game-controls">
+        <button class="button" id="startGame">Start / Restart</button>
+        <span id="scoreLabel">Score: 0</span>
+        <span id="statusLabel">Status: Ready</span>
+      </div>
     </div>
 
-    <section id="bug-output" class="output-box">
-      <h2>Bug Scanner Ready</h2>
-      <p>Select a bug to inspect it.</p>
+    <section id="bug-output" class="output-box" data-aos="fade-up" data-aos-delay="240">
+      <h2>Bug Decoder</h2>
+      <p>Shoot a bug in-game to see what it represents.</p>
     </section>
 
-    <p><a href="index.html">← Back to Blog</a></p>
+    <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>
   </main>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="section3.js"></script>
 </body>
 </html>

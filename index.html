@@ -3,79 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Blog</title>
+  <title>Ghost in the Group Chat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <header class="hero">
-    <h1>TITLE OF BLOG</h1>
-    <p>Subtitle of the blog or whatever idk</p>
+  <header class="hero shell" data-aos="fade-up">
+    <p class="eyebrow">Interactive Explainer Blog</p>
+    <h1>Ghost in the Group Chat</h1>
+    <p class="lead">
+      A visual story about how AI agents can seem helpful, then suddenly feel weirdly human in all the wrong ways.
+    </p>
     <p class="byline">By Roshinikitha · WRIT 1301</p>
   </header>
 
-  <section id="hook" class="scrolly">
+  <section id="hook" class="scrolly shell">
     <div class="scrolly__graphic">
-      <div class="phone">
-        <div class="phone-header">Messages</div>
-
-        <div id="chat" class="chat">
-          <div id="bubble" class="bubble narration">
-            it was a regular tuesday morning, when i finally got back from my classes and was able to catch up on all my texts
+      <div class="phone-shell">
+        <div class="phone-notch"></div>
+        <div class="phone" id="phoneState" data-theme="safe">
+          <div class="phone-header">Dad 💬</div>
+          <div class="chat">
+            <div class="msg narration" id="storyOverlay">
+              Scroll to replay the moment I realized this wasn’t my dad.
+            </div>
+            <div id="bubble" class="msg narration">
+              It was a regular Tuesday when I finally got time to check my messages.
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="scrolly__text">
-      <div class="step" data-type="narration" data-text="it was a regular tuesday morning, when i finally got back from my classes and was able to catch up on all my texts">
-        <p>Start of animation.</p>
-      </div>
-
-      <div class="step" data-type="narration" data-text="i decided to check on my dad first, since he always seems to have something interesting for me!">
-        <p>Checking on Dad.</p>
-      </div>
-
-      <div class="step" data-type="me" data-text="Appa, i’m getting an error on the link u sent me, could u send me a diff one?">
-        <p>I text him.</p>
-      </div>
-
-      <div class="step" data-type="dad" data-text="That sounds like a plan, Nikki; technology hiccups are always a bit of a challenge! 😊">
-        <p>The reply feels wrong.</p>
-      </div>
-
-      <div class="step" data-type="reaction" data-text="that is not my dad.">
-        <p>Something is off.</p>
-      </div>
-
-      <div class="step" data-type="reaction" data-text="he doesn’t talk like that. he barely uses emojis. and definitely not that one.">
-        <p>The realization lands.</p>
-      </div>
-
-      <div class="step" data-type="me" data-text="Bro…">
-        <p>Final reaction.</p>
-      </div>
+      <article class="step" data-type="narration" data-theme="safe" data-text="It was a regular Tuesday when I finally got time to check my messages.">
+        <p>I had just gotten back from class and opened my family chat.</p>
+      </article>
+      <article class="step" data-type="me" data-theme="safe" data-text="Appa, the link you sent gives me an error. Can you send another one?">
+        <p>I texted my dad like normal.</p>
+      </article>
+      <article class="step" data-type="dad" data-theme="odd" data-text="That sounds like a plan, Nikki. Technology hiccups can be challenging 😊">
+        <p>The response sounded polished. Too polished.</p>
+      </article>
+      <article class="step" data-type="reaction" data-theme="danger" data-text="That is not my dad.">
+        <p>That sentence hit instantly.</p>
+      </article>
+      <article class="step" data-type="me" data-theme="danger" data-text="Where did we eat last weekend?">
+        <p>I tried a simple test question.</p>
+      </article>
+      <article class="step" data-type="dad" data-theme="danger" data-text="Hey Nikki, I am here to help with anything you need! 😊">
+        <p>It dodged the question completely.</p>
+      </article>
+      <article class="step" data-type="reaction" data-theme="danger" data-text="Something was pretending to be him.">
+        <p>Not a glitch. Not a typo. A fake persona.</p>
+      </article>
     </div>
   </section>
 
-  <section class="normal-section">
-    <h2>Section 2: What is an AI Agent?</h2>
+  <section class="normal-section shell" data-aos="fade-right">
+    <h2>Section 2: Build the Agent</h2>
     <p>
-      To make the internal structure of an AI agent easier to understand, I also created a separate interactive page.
+      Walk through a mini factory and click each component to understand what gives an AI agent power.
     </p>
-    <a href="section2-agent.html" class="button">Open Section 2 Interactive</a>
+    <a href="section2-agent.html" class="button">Enter the Factory</a>
   </section>
 
-  <section class="normal-section">
+  <section class="normal-section shell" data-aos="fade-left">
     <h2>Section 3: Defend the Agent</h2>
     <p>
-      I also created a separate interactive page where users can explore how different AI failures happen and how to recognize them.
+      Play a simple Space Invaders-style mini game where each bug is a real type of AI failure mode.
     </p>
-    <a href="section3-defend.html" class="button">Open Section 3 Interactive</a>
+    <a href="section3-defend.html" class="button">Start Defense Game</a>
   </section>
 
-  <!-- Scrollama CDN -->
+  <footer class="shell footer">
+    <p>Built with plain HTML/CSS/JS + small CDN libraries for GitHub Pages.</p>
+  </footer>
+
   <script src="https://unpkg.com/scrollama"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="hook.js"></script>
 </body>
 </html>
