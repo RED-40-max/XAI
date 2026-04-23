@@ -4,6 +4,9 @@ const phoneState = document.getElementById("phoneState");
 const steps = document.querySelectorAll(".step");
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Typed from 'typed.js';
+import scrollama from "scrollama";
+
 
 let activeTypedInstance = null;
 

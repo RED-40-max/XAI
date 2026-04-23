@@ -1,3 +1,7 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const startButton = document.getElementById("startGame");
