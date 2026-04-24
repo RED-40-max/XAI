@@ -8,38 +8,44 @@ const selectedParts = new Set();
 
 const partInfo = {
   goal: {
-    title: "Goal Parser",
-    desc: "This reads your request and turns it into smaller tasks. If the goal is misunderstood, everything else can drift.",
-    analogy: "Like reading a recipe title before cooking."
+    title: "Planning (Decomposition Engine)",
+    desc: "Planning breaks a goal into smaller steps so the agent can act systematically. A flawed plan does not fail once - it propagates across every following step.",
+    analogy: "Like writing a recipe before cooking. One wrong instruction can throw off the entire meal."
   },
   memory: {
-    title: "Memory Bank",
-    desc: "This stores earlier facts so the agent can stay consistent across multiple steps.",
-    analogy: "Like keeping sticky notes on your desk while working."
+    title: "Memory (Context + Persistence)",
+    desc: "Memory stores and retrieves past context. It helps continuity, but bad memory can be reused repeatedly and amplify mistakes.",
+    analogy: "Like using a shared notebook. If one bad note is written early, every later decision repeats it."
   },
   tools: {
-    title: "Tool Belt",
-    desc: "This lets the agent do actions beyond text, like search, files, API calls, or simple scripts.",
-    analogy: "Like having a calculator, map, and flashlight in your backpack."
+    title: "Tools (External Action Layer)",
+    desc: "Tools let agents act beyond text - APIs, files, search, and system actions. This increases power and real-world risk.",
+    analogy: "Like handing someone your keys, card, and phone to run errands - useful, but high impact if misunderstood."
   },
   safety: {
-    title: "Safety Guard",
-    desc: "This checks what the agent should avoid. It cannot catch everything, but it reduces risky behavior.",
-    analogy: "Like a gatekeeper who asks, 'Should we really do this?'"
+    title: "Safety (Guardrails)",
+    desc: "Safety layers check what the agent should avoid. Guardrails reduce risk, but they must be actively designed and updated.",
+    analogy: "Like a gatekeeper who checks risky requests before action."
   },
   feedback: {
-    title: "Feedback Loop",
-    desc: "This helps the agent check results and improve on the next attempt.",
-    analogy: "Like proofreading your own draft before submitting it."
+    title: "Reflection (Self-Correction Loop)",
+    desc: "Reflection evaluates past actions and adjusts next steps. It can correct mistakes, but weak reflection may reinforce errors instead.",
+    analogy: "Like reviewing a test - good reflection catches mistakes; bad reflection doubles down on them."
   }
 };
 
 function renderPart(partKey) {
   const part = partInfo[partKey];
+  if (!part) return;
+
+  partButtons.forEach((btn) => {
+    btn.classList.toggle("is-active", btn.dataset.part === partKey);
+  });
+
   output.innerHTML = `
     <h2>${part.title}</h2>
     <p>${part.desc}</p>
-    <p><strong>Simple analogy:</strong> ${part.analogy}</p>
+    <p><strong>Analogy:</strong> ${part.analogy}</p>
   `;
 
   selectedParts.add(partKey);

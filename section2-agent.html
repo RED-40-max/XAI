@@ -29,17 +29,28 @@
       </p>
     </section>
 
-    <div class="card-grid" data-aos="fade-up" data-aos-delay="150">
-      <button class="card" data-part="goal">Goal Parser</button>
-      <button class="card" data-part="memory">Memory Bank</button>
-      <button class="card" data-part="tools">Tool Belt</button>
-      <button class="card" data-part="safety">Safety Guard</button>
-      <button class="card" data-part="feedback">Feedback Loop</button>
-    </div>
+    <section class="diagram-layout" data-aos="fade-up" data-aos-delay="150">
+      <div class="diagram-stage" aria-label="Agent component diagram">
+        <div class="diagram-loop" aria-hidden="true"></div>
+        <div class="diagram-lines" aria-hidden="true">
+          <span class="line l-goal-memory"></span>
+          <span class="line l-memory-tools"></span>
+          <span class="line l-tools-feedback"></span>
+          <span class="line l-feedback-goal"></span>
+          <span class="line l-safety-goal"></span>
+        </div>
 
-    <section id="output" class="output-box" data-aos="fade-up" data-aos-delay="220">
-      <h2>Factory Console</h2>
-      <p>Select a component to inspect how it works.</p>
+        <button class="diagram-node n-goal" data-part="goal">Planning</button>
+        <button class="diagram-node n-memory" data-part="memory">Memory</button>
+        <button class="diagram-node n-tools" data-part="tools">Tools</button>
+        <button class="diagram-node n-safety" data-part="safety">Safety</button>
+        <button class="diagram-node n-feedback" data-part="feedback">Reflection</button>
+      </div>
+
+      <aside id="output" class="diagram-popup output-box" aria-live="polite">
+        <h2>Click a Component</h2>
+        <p>Select a node in the diagram to view what it does, why it matters, and how it connects.</p>
+      </aside>
     </section>
 
     <div class="factory-status" data-aos="fade-up" data-aos-delay="280">
