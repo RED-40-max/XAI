@@ -478,27 +478,33 @@ a {
 
 .phone-shell {
   position: relative;
-  width: min(390px, 100%);
+  width: min(390px, 92vw);
   margin: 0 auto;
-  filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.28));
+  border: 4px solid #29232d;
+  border-radius: 34px;
+  background: #29232d;
+  padding: 6px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
 }
 
 .phone-shell__frame {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  z-index: 3;
+  opacity: 0.98;
   user-select: none;
   pointer-events: none;
 }
 
 .phone {
-  position: absolute;
-  left: 10%;
-  right: 10%;
-  top: 10%;
-  bottom: 9%;
-  border-radius: 22px;
-  min-height: 0;
+  position: relative;
+  z-index: 1;
+  border-radius: 26px;
+  min-height: 600px;
   background: #fcfaf6;
   border: 1px solid #dfd6ca;
   overflow: hidden;
@@ -765,10 +771,7 @@ a {
   }
 
   .phone {
-    left: 10.5%;
-    right: 10.5%;
-    top: 10%;
-    bottom: 9.2%;
+    min-height: 500px;
   }
 
   .chat {
