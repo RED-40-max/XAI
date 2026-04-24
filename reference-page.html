@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>References (APA)</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="void-backdrop" aria-hidden="true">
+    <canvas id="starfield" width="100" height="100"></canvas>
+    <div class="void-vignette"></div>
+    <div class="void-scanlines"></div>
+  </div>
+
+  <main class="page shell">
+    <section class="normal-section shell" data-aos="fade-up" data-star-hint="technical">
+      <h1>References</h1>
+      <p>APA citation list</p>
+
+      <p>
+        Consumer Bankers Association. (2026). <em>Agentic AI payments: Navigating consumer protection.</em>
+        https://consumerbankers.com/wp-content/uploads/2026/01/CBA-Agentic-Symposium-White-Paper-2026-01v2.pdf
+      </p>
+      <p>
+        Cyber Magazine. (2026). <em>The risk of agentic AI systems.</em>
+        https://cybermagazine.com/news/the-risk-of-agentic-the-story-of-metas-ai-agent-data-leak
+      </p>
+      <p>
+        IBM Technology (Crume, J.). (2025). <em>Cybersecurity trends in 2026: Shadow AI, quantum &amp; deepfakes</em>
+        [YouTube video]. https://www.youtube.com/watch?v=2jU-mLMV8Vw
+      </p>
+      <p>
+        Kumar, P. [@pankajkumar_dev]. (2026, July 5). <em>Claude Mythos: The model Anthropic is too scared to release…</em>
+        [Tweet]. <em>X (formerly Twitter)</em>. https://x.com/pankajkumar_dev/status/2041750996196749547
+      </p>
+      <p>
+        Microsoft. (2025). <em>Global AI adoption report.</em>
+        https://www.microsoft.com/en-us/corporate-responsibility/topics/ai-economy-institute/reports/global-ai-adoption-2025/
+      </p>
+      <p>
+        N2K / The CyberWire. (2025). <em>Cybersecurity predictions for 2026.</em>
+        https://thecyberwire.com/stories/5a2a9536820742d9afc5be71e4002eab/looking-ahead-cybersecurity-predictions-for-2026
+      </p>
+      <p>
+        Shinn, N., Labash, B., &amp; Gopinath, A. (2023). <em>Reflexion: Language agents with verbal reinforcement
+        learning.</em> arXiv preprint arXiv:2303.11366. https://arxiv.org/pdf/2303.11366
+      </p>
+      <p>
+        Weng, L. (2023). <em>LLM powered autonomous agents.</em>
+        https://lilianweng.github.io/posts/2023-06-23-agent/
+      </p>
+
+      <p><a class="button" href="index.html">← Back to Main Story</a></p>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="starfield.js?v=2"></script>
+  <script>
+    if (window.AOS) {
+      window.AOS.init({ once: true, duration: 700 });
+    }
+    if (window.Starfield) {
+      window.Starfield.init({ canvasId: "starfield", mood: "technical" });
+    }
+  </script>
+</body>
+</html>
