@@ -724,6 +724,27 @@ a {
   }
 }
 
+.hero-landing.shell {
+    width: 100%;
+    max-width: none;
+  }
+
+.hero-title {
+  display: block; /* was inline-block */
+  width: 100%;
+
+  font-size: clamp(3rem, 8vw, 6rem); /* bigger */
+
+  padding: 0.6em 0.8em; /* more breathing room */
+}
+
+.hero-subtitle {
+    font-weight: 400; /* was 600 */
+
+    max-width: 700px;
+    line-height: 1.6;
+  }
+
 /* REMOVE WIDTH CONSTRAINT */
 .shell {
     max-width: none;

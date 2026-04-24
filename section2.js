@@ -1,3 +1,5 @@
+import AOS from 'aos';
+
 const output = document.getElementById("output");
 const buildCount = document.getElementById("buildCount");
 const progressBar = document.getElementById("progressBar");
