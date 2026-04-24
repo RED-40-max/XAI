@@ -486,38 +486,26 @@ a {
 
 .phone-shell {
   position: relative;
-  width: min(460px, 92vw);
+  width: min(420px, 92vw);
   margin: 0 auto;
-  aspect-ratio: 1 / 1;
-  border-radius: 22px;
-  background: transparent;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  aspect-ratio: 500 / 890;
+  border-radius: 20px;
+  background: #090b12;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.42), inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   overflow: clip;
 }
 
 .phone-shell__frame {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  z-index: 3;
-  pointer-events: none;
-  opacity: 0.96;
+  display: none;
 }
 
 .phone-screen {
   position: absolute;
-  /* Calibrated to this specific frame PNG's inner display area */
-  left: 28.5%;
-  right: 28.5%;
-  top: 10.5%;
-  bottom: 13%;
+  inset: 0;
   z-index: 1;
-  border-radius: 17px;
+  border-radius: 20px;
   overflow: hidden;
-  background: #040507;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 0 24px rgba(0, 0, 0, 0.45);
+  background: #050507;
 }
 
 .phone-reel {
@@ -726,7 +714,7 @@ a {
   }
 
   .phone-shell {
-    width: min(390px, 94vw);
+    width: min(360px, 94vw);
   }
 
   .scrolly__text .step {
