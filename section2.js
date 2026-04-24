@@ -1,5 +1,3 @@
-import AOS from 'aos';
-
 const output = document.getElementById("output");
 const buildCount = document.getElementById("buildCount");
 const progressBar = document.getElementById("progressBar");
@@ -69,8 +67,13 @@ partButtons.forEach((button) => {
 });
 
 if (window.AOS) {
-  AOS.init({
+  window.AOS.init({
     once: true,
     duration: 700
+  });
+} else {
+  document.querySelectorAll("[data-aos]").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
   });
 }

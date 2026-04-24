@@ -6,8 +6,6 @@
  * - Starfield: background mood is driven by the phone "theme" in the scrolly,
  *   then switches to calmer "technical" stars once you move past the story
  */
-import Typed from 'typed.js';
-import AOS from 'aos';
 
 const bubble = document.getElementById("bubble");
 const storyOverlay = document.getElementById("storyOverlay");
@@ -113,9 +111,15 @@ if (window.scrollama) {
 window.addEventListener("scroll", updateBackgroundFromScroll, { passive: true });
 
 if (window.AOS) {
-  AOS.init({
+  window.AOS.init({
     once: true,
     duration: 700,
+  });
+} else {
+  // Fail-safe so content stays visible if AOS fails.
+  document.querySelectorAll("[data-aos]").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
   });
 }
 

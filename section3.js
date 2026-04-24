@@ -1,7 +1,3 @@
-
-import AOS from 'aos';
-
-
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const startButton = document.getElementById("startGame");
@@ -188,9 +184,14 @@ document.addEventListener("keyup", (event) => {
 startButton.addEventListener("click", startGame);
 
 if (window.AOS) {
-  AOS.init({
+  window.AOS.init({
     once: true,
     duration: 700
+  });
+} else {
+  document.querySelectorAll("[data-aos]").forEach((el) => {
+    el.style.opacity = "1";
+    el.style.transform = "none";
   });
 }
 
