@@ -125,12 +125,21 @@
 body {
   margin: 0;
   font-family: var(--font-body);
+  font-size: clamp(16px, 1.02rem, 20px);
   color: var(--ink);
   line-height: 1.65;
   background: var(--agentic-bg);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+p,
+li,
+button,
+input,
+textarea {
+  font-size: clamp(15px, 0.98rem, 19px);
 }
 
 /* Mood hooks for tiny UI tweaks (optional) */
@@ -148,7 +157,7 @@ body.star-mood--technical {
 }
 
 h1 {
-  margin: 4;
+  margin: 0;
   font-family: var(--font-h1);
   font-weight: 500;
   line-height: 1.05;
@@ -251,7 +260,7 @@ a {
 /* Three-column + center: left tall | center CTA | right stacked */
 .hero-landing__grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.15fr) minmax(0, 1.05fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1fr);
   gap: clamp(0.75rem, 2.5vw, 1.25rem);
   align-items: start;
   min-height: 280px;
@@ -303,8 +312,8 @@ a {
   border-radius: 8px;
   padding: 0.9rem 0.85rem;
   color: var(--hero-yellow);
-  font-size: 0.92rem;
-  line-height: 1.45;
+  font-size: clamp(15px, 0.98rem, 19px);
+  line-height: 1.55;
 }
 
 .hero-card--tall {
@@ -492,7 +501,7 @@ a {
   margin-bottom: 0.7rem;
   padding: 0.7rem 0.85rem;
   border-radius: 15px;
-  font-size: 0.95rem;
+  font-size: clamp(15px, 0.98rem, 18px);
 }
 
 .msg.me {
@@ -534,13 +543,14 @@ a {
   min-height: 75vh;
   display: grid;
   align-items: center;
-  opacity: 0.42;
+  opacity: 0.62;
   transition: opacity 220ms ease;
 }
 
 .scrolly__text .step p {
   margin: 0;
   color: #ece7f4;
+  font-size: clamp(16px, 1rem, 20px);
   background: rgba(14, 13, 20, 0.78);
   border: 1px solid var(--step-line, var(--system-line));
   border-radius: 16px;
@@ -576,10 +586,16 @@ a {
   border: 2px solid #110f18;
   background: linear-gradient(120deg, var(--star-bright), #b84d45);
   color: #0b0b0f;
+  font-size: clamp(15px, 0.98rem, 18px);
   font-weight: 800;
   text-decoration: none;
   transition: transform 120ms ease, box-shadow 0.2s;
   box-shadow: 0 4px 0 #3b1518;
+}
+
+.game-controls span {
+  color: #f1eafb;
+  font-size: clamp(14px, 0.92rem, 18px);
 }
 
 .button:hover {
@@ -752,7 +768,7 @@ a {
 .hero-subtitle::after {
   content: "";
   display: block;
-  width: min(760px, 98%);
+  width: min(860px, 99%);
   height: 10px;
   margin-top: 10px;
   background: linear-gradient(90deg, rgba(34, 34, 36, 0.26), rgba(34, 34, 36, 0.08));
