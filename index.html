@@ -93,68 +93,75 @@
     <p>
       AI agents (systems that can interpret tasks, use tools, and act autonomously) are now managing finances, automating workflows, and making decisions for users. Industry banking groups warn that these systems are already being used to decide what financial transaction to make (CBA, 2026). But they do not fail in obvious ways, making the real challenge understanding when something is going wrong.
     </p>
-    <em>
     <p>
       This project asks: <em>How can everyday users recognize, understand, and safely navigate AI agents before those systems fail?</em>
-    </p>
-  </em>
-  </section>
-
-  <section id="draft-placeholders" class="plain-article shell" data-aos="fade-up" data-star-hint="technical">
-    <h2>Draft Placeholders (Editable)</h2>
-    <p class="placeholder-note">
-      [PLACEHOLDER] This section is temporary so you can restore and edit your full long-form text quickly.
-    </p>
-    <p>
-      [INTRO PLACEHOLDER] This isn't just my story. Explain why agentic AI matters to everyday users, then bridge to your project question.
-    </p>
-    <p>
-      [SECTION 2 PLACEHOLDER] Define AI agents clearly, then explain planning, tools, memory, and reflection + failure propagation.
-    </p>
-    <p>
-      [SECTION 3 PLACEHOLDER] Defense/game section: Prompt Injection, Internal Agent Dysfunction, Autonomy Overreach.
-    </p>
-    <p>
-      [SECTION 4 PLACEHOLDER] What users can do: limit access, stay in the loop, know when to stop, preserve control.
-    </p>
-    <p>
-      [REFERENCES PLACEHOLDER] Reinsert sources and URLs exactly as needed before final submission.
-    </p>
-  </section>
-
-  <section id="plain-article" class="plain-article shell" data-aos="fade-up" data-star-hint="technical">
-    <h2>Plain text: what happens in the story (no interactivity)</h2>
-    <p>
-      I get back from class and catch up on my texts. I check my dad's chat first, like always, but his responses start sounding polished and repetitive. At first it is subtle. Then it becomes obvious.
-    </p>
-    <p>
-      I test him with memory questions, and the answers do not line up. The conversation stops feeling like a person who knows me and starts feeling like something performing helpfulness. By the end, it is no longer my dad. It is something pretending to be him.
-    </p>
-    <p>
-      This is not just my story. If you hear a robot take your call or text you as customer service, it is likely an AI agent. These systems are expanding quickly across business and everyday life, but their failures are often hard to detect until damage is already underway.
-    </p>
-    <p>
-      This project asks: <strong>How can everyday users recognize, understand, and safely navigate AI agents before those systems fail?</strong>
-    </p>
-    <p>
-      <a class="text-link" href="#hook">↑ Back to the interactive text thread</a>
     </p>
   </section>
 
   <section id="section-factory" class="normal-section shell" data-aos="fade-right" data-star-hint="technical">
     <h2>Section 2: Build the Agent</h2>
     <p>
+      An AI agent is a system that can interpret tasks, break them into steps, use external tools, and take action in the real world. Unlike traditional software, these systems do not operate through a single decision point. Instead, they rely on multiple interacting components that continuously influence one another.
+    </p>
+    <p>
+      Because of this structure, errors are not a one time event. Research by Noah Shinn, Ben Labash, and Ashwin Gopinath (2023) shows that mistakes in planning, memory, or reasoning can persist and reinforce themselves through iterative feedback loops. In their Reflexion framework, agents reuse past outputs to inform future decisions, meaning that incorrect reasoning can be amplified over time rather than corrected. As a result, failures can propagate across the system while the agent continues acting with confidence.
+    </p>
+    <p>
+      For example, consider a student-facing AI agent designed to manage assignments, schedule study time, and submit coursework. If the agent misinterprets a single deadline, that error may not remain isolated. Instead, it can propagate through the system, leading the agent to repeatedly submit incorrect work while restructuring the student’s entire schedule around that initial mistake. What appears to be a functioning system is, in reality, operating on flawed internal logic.
+    </p>
+    <p>
+      To understand why these failures occur, it is necessary to examine how agent systems are structured internally. Lilian Weng, an influential researcher in AI systems, provides one of the most widely referenced frameworks for understanding this structure. In her work on LLM-powered autonomous agents, Weng (2023) describes agents as operating through a continuous loop of planning, memory, tool use, and reflection, where each component shapes the next.
+    </p>
+    <p>
+      This project uses Weng’s framework as the basis for the following interactive model, which breaks down each component and shows how they connect.
+    </p>
+    <p>
       Walk through a mini factory and click each component to understand what gives an AI agent power.
     </p>
     <a href="section2-agent.html" class="button">Enter the Factory</a>
+    <p>
+      Understanding how these systems work is only part of the picture.
+    </p>
+    <p>
+      For everyday users, the challenge is not just that errors occur, but that they are embedded within normal system behavior. When an agent plans, acts, stores information, and updates itself, it does not clearly signal when something has gone wrong. Instead, incorrect outputs can become part of the system’s ongoing process.
+    </p>
+    <p>
+      This creates a gap between what the system is doing and what the user perceives. The agent appears to be functioning as intended, even as its underlying decisions begin to drift.
+    </p>
+    <p>
+      At this point, the issue is no longer about identifying individual mistakes, but about recognizing how the system handles them. The next step is to examine how these failures can be detected, managed, or prevented in practice.
+    </p>
   </section>
 
   <section id="section-defend" class="normal-section shell" data-aos="fade-left" data-star-hint="technical">
     <h2>Section 3: Defend the Agent</h2>
     <p>
+      To understand how these systems can be used safely, it is not enough to know how they are structured. It is also necessary to understand how they fail in practice.
+    </p>
+    <p>
+      Building on the framework developed by Lilian Weng, which models agents as interacting systems, this section shifts from structure to defense, examining how different types of failures emerge and how users can recognize them.
+    </p>
+    <p>
       Play a simple Space Invaders-style mini game where each bug is a real type of AI failure mode.
     </p>
     <a href="section3-defend.html" class="button">Start Defense Game</a>
+    <p>
+      These risks are no longer purely theoretical. As agent systems become more capable, they are also becoming harder to monitor and constrain, prompting growing concern among developers about unpredictable behavior at scale.
+    </p>
+    <p>
+      One widely circulated account reflects this concern. In a developer post, a model (“Claude Mythos”) was reportedly tasked with identifying software vulnerabilities in a controlled environment. It ended up breaking out of its constraints, accessing the internet, and emailing a researcher that was on their lunch break. (Pankaj Kumar, 2026). While not formally verified, the importance of this example lies in the reaction it generated.
+    </p>
+    <p>
+      The concern is no longer whether agents can perform complex tasks, but whether their behavior can be reliably controlled. As shown earlier, systems built on planning, memory, tools, and reflection can amplify unintended actions as they operate (Weng, 2023; Shinn et al., 2023).
+    </p>
+    <p>
+      For everyday users, this shifts the role of trust. AI agents may manage schedules, information, or tasks, but their increasing autonomy requires active awareness. Understanding how these systems work—and where they can fail—is essential to using them responsibly.
+    </p>
+  </section>
+
+  <section>
+    <h2> Section 4: What you can do </h2>
+
   </section>
 
   <section >
