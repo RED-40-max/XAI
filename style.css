@@ -470,23 +470,24 @@ a {
 }
 
 .scrolly {
-  display: grid;
-  grid-template-columns: minmax(320px, 460px) 1fr;
-  gap: clamp(1.2rem, 4vw, 3.2rem);
-  align-items: start;
+  display: block;
+  position: relative;
+  min-height: 320vh;
   margin-top: 2.5rem;
-  padding: 0 0 1rem;
+  padding: 0;
 }
 
 .scrolly__graphic {
   position: sticky;
-  top: 1.5rem;
+  top: 1.25rem;
   height: fit-content;
+  width: min(420px, 92vw);
+  margin: 0 auto;
 }
 
 .phone-shell {
   position: relative;
-  width: min(420px, 92vw);
+  width: 100%;
   margin: 0 auto;
   aspect-ratio: 500 / 890;
   border-radius: 20px;
@@ -525,28 +526,8 @@ a {
   background: #050507;
 }
 
-.scrolly__text .step {
-  min-height: 75vh;
-  display: grid;
-  align-items: center;
-  opacity: 0.62;
-  transition: opacity 220ms ease;
-}
-
-.scrolly__text .step p {
-  margin: 0;
-  color: #ece7f4;
-  font-size: clamp(16px, 1rem, 20px);
-  background: rgba(14, 13, 20, 0.78);
-  border: 1px solid var(--step-line, var(--system-line));
-  border-radius: 16px;
-  padding: 1.2rem;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(5px);
-}
-
-.scrolly__text .step.is-active {
-  opacity: 1;
+.scrolly__text {
+  display: none;
 }
 
 .normal-section {
@@ -705,7 +686,7 @@ a {
 
 @media (max-width: 920px) {
   .scrolly {
-    grid-template-columns: 1fr;
+    min-height: 260vh;
   }
 
   .scrolly__graphic {
@@ -717,8 +698,8 @@ a {
     width: min(360px, 94vw);
   }
 
-  .scrolly__text .step {
-    min-height: 55vh;
+  .scrolly__graphic {
+    width: min(360px, 94vw);
   }
 }
 

@@ -8,9 +8,7 @@
 
 const phoneReel = document.getElementById("phoneReel");
 const phoneState = document.getElementById("phoneState");
-const steps = document.querySelectorAll(".step");
 const scrollySection = document.getElementById("hook");
-const stepList = Array.from(steps);
 const phoneSlides = phoneReel ? Array.from(phoneReel.querySelectorAll(".phone-slide")) : [];
 
 function getScrollyProgress() {
@@ -43,7 +41,16 @@ function isScrollyInFocus() {
  * Any section with data-star-hint on index.html can win based on what is most visible.
  */
 function updateBackgroundFromScroll() {
-  updatePhoneReelFromProgress(getScrollyProgress());
+  const progress = getScrollyProgress();
+  updatePhoneReelFromProgress(progress);
+  if (phoneState) {
+    if (progress < 0.34) phoneState.dataset.theme = "safe";
+    else if (progress < 0.67) phoneState.dataset.theme = "odd";
+    else phoneState.dataset.theme = "danger";
+  }
+  if (window.Starfield && isScrollyInFocus() && phoneState) {
+    window.Starfield.setFromPhoneTheme(phoneState.dataset.theme || "safe");
+  }
   if (!window.Starfield || isScrollyInFocus()) return;
   const hintSections = document.querySelectorAll("[data-star-hint]");
   let bestEl = null;
@@ -62,38 +69,6 @@ function updateBackgroundFromScroll() {
     const hint = bestEl.getAttribute("data-star-hint");
     if (hint) window.Starfield.setMood(hint);
   }
-}
-
-function handleStepEnter(response) {
-  const step = response.element;
-  const theme = step.dataset.theme || "safe";
-
-  steps.forEach((item) => item.classList.remove("is-active"));
-  step.classList.add("is-active");
-
-  if (phoneState) phoneState.dataset.theme = theme;
-  const idx = stepList.indexOf(step);
-  const stepProgress = idx <= 0 ? 0 : idx / Math.max(1, stepList.length - 1);
-  updatePhoneReelFromProgress(stepProgress);
-  if (window.Starfield) {
-    window.Starfield.setFromPhoneTheme(theme);
-  }
-}
-
-// Scrollama reads your scroll position and calls our handler when a step is centered.
-if (window.scrollama) {
-  const scroller = window.scrollama();
-  scroller
-    .setup({
-      step: ".step",
-      offset: 0.63,
-      debug: false,
-    })
-    .onStepEnter(handleStepEnter);
-
-  window.addEventListener("resize", () => {
-    scroller.resize();
-  });
 }
 
 window.addEventListener("scroll", updateBackgroundFromScroll, { passive: true });
