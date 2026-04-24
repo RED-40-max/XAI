@@ -6,33 +6,29 @@
  *   then switches to calmer "technical" stars once you move past the story
  */
 
-const phoneSlide = document.getElementById("phoneSlide");
+const phoneReel = document.getElementById("phoneReel");
 const phoneState = document.getElementById("phoneState");
 const steps = document.querySelectorAll(".step");
 const scrollySection = document.getElementById("hook");
 const stepList = Array.from(steps);
-const phoneFrames = ["assets/1.png", "assets/2.png", "assets/3.png"];
-let activeFrameIndex = 0;
+const phoneSlides = phoneReel ? Array.from(phoneReel.querySelectorAll(".phone-slide")) : [];
 
-function frameIndexFromStep(stepIndex) {
-  if (stepList.length <= 1) return 0;
-  const progress = stepIndex / (stepList.length - 1);
-  return Math.min(phoneFrames.length - 1, Math.floor(progress * phoneFrames.length));
+function getScrollyProgress() {
+  if (!scrollySection) return 0;
+  const rect = scrollySection.getBoundingClientRect();
+  const total = Math.max(1, scrollySection.offsetHeight - window.innerHeight * 0.7);
+  const raw = (-rect.top + window.innerHeight * 0.2) / total;
+  return Math.max(0, Math.min(1, raw));
 }
 
-function updatePhoneFrame(stepIndex) {
-  if (!phoneSlide) return;
-  const nextIndex = frameIndexFromStep(stepIndex);
-  if (nextIndex === activeFrameIndex) return;
-  activeFrameIndex = nextIndex;
-  phoneSlide.classList.add("is-changing");
-  window.setTimeout(() => {
-    phoneSlide.src = phoneFrames[nextIndex];
-    phoneSlide.alt = `Chat thread frame ${nextIndex + 1}`;
-  }, 90);
-  window.setTimeout(() => {
-    phoneSlide.classList.remove("is-changing");
-  }, 260);
+function updatePhoneReelFromProgress(progress) {
+  if (!phoneReel || !phoneSlides.length) return;
+  const screenHeight = phoneState ? phoneState.clientHeight : 0;
+  if (!screenHeight) return;
+  const reelHeight = screenHeight * phoneSlides.length;
+  const maxOffset = Math.max(0, reelHeight - screenHeight);
+  const y = -Math.round(maxOffset * progress);
+  phoneReel.style.transform = `translateY(${y}px)`;
 }
 
 function isScrollyInFocus() {
@@ -47,6 +43,7 @@ function isScrollyInFocus() {
  * Any section with data-star-hint on index.html can win based on what is most visible.
  */
 function updateBackgroundFromScroll() {
+  updatePhoneReelFromProgress(getScrollyProgress());
   if (!window.Starfield || isScrollyInFocus()) return;
   const hintSections = document.querySelectorAll("[data-star-hint]");
   let bestEl = null;
@@ -76,7 +73,8 @@ function handleStepEnter(response) {
 
   if (phoneState) phoneState.dataset.theme = theme;
   const idx = stepList.indexOf(step);
-  updatePhoneFrame(idx < 0 ? 0 : idx);
+  const stepProgress = idx <= 0 ? 0 : idx / Math.max(1, stepList.length - 1);
+  updatePhoneReelFromProgress(stepProgress);
   if (window.Starfield) {
     window.Starfield.setFromPhoneTheme(theme);
   }
@@ -99,6 +97,9 @@ if (window.scrollama) {
 }
 
 window.addEventListener("scroll", updateBackgroundFromScroll, { passive: true });
+window.addEventListener("resize", () => {
+  updatePhoneReelFromProgress(getScrollyProgress());
+});
 
 if (window.AOS) {
   window.AOS.init({

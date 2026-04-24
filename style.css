@@ -486,12 +486,12 @@ a {
 
 .phone-shell {
   position: relative;
-  width: min(500px, 96vw);
+  width: min(460px, 92vw);
   margin: 0 auto;
-  aspect-ratio: 500 / 890;
-  border-radius: 28px;
-  background: #0f111a;
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.34);
+  aspect-ratio: 1 / 1;
+  border-radius: 22px;
+  background: transparent;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   overflow: clip;
 }
 
@@ -503,28 +503,38 @@ a {
   object-fit: contain;
   z-index: 3;
   pointer-events: none;
-  opacity: 0.28;
+  opacity: 0.96;
 }
 
 .phone-screen {
   position: absolute;
-  inset: 0;
+  /* Calibrated to this specific frame PNG's inner display area */
+  left: 28.5%;
+  right: 28.5%;
+  top: 10.5%;
+  bottom: 13%;
   z-index: 1;
-  border-radius: 24px;
+  border-radius: 17px;
   overflow: hidden;
+  background: #040507;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), inset 0 0 24px rgba(0, 0, 0, 0.45);
+}
+
+.phone-reel {
+  width: 100%;
+  display: grid;
+  grid-auto-rows: 100%;
+  transform: translateY(0);
+  will-change: transform;
+  transition: transform 180ms linear;
 }
 
 .phone-slide {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
-  transition: opacity 260ms ease, transform 260ms ease;
-}
-
-.phone-slide.is-changing {
-  opacity: 0.18;
-  transform: scale(1.012);
+  background: #050507;
 }
 
 .scrolly__text .step {
@@ -716,7 +726,7 @@ a {
   }
 
   .phone-shell {
-    width: min(430px, 94vw);
+    width: min(390px, 94vw);
   }
 
   .scrolly__text .step {
