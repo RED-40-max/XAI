@@ -513,16 +513,18 @@ a {
 
 .phone-reel {
   width: 100%;
-  display: grid;
-  grid-auto-rows: 100%;
+  height: 300%;
+  display: flex;
+  flex-direction: column;
   transform: translateY(0);
   will-change: transform;
   transition: transform 180ms linear;
 }
 
 .phone-slide {
+  flex: 0 0 calc(100% / 3);
   width: 100%;
-  height: 100%;
+  height: calc(100% / 3);
   object-fit: contain;
   object-position: center center;
   display: block;
