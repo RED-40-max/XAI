@@ -481,8 +481,10 @@ a {
   position: sticky;
   top: 1.25rem;
   height: fit-content;
-  width: min(420px, 92vw);
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0;
 }
 
 .phone-shell {
@@ -527,7 +529,7 @@ a {
 }
 
 .scrolly__text {
-  display: none;
+  display: none !important;
 }
 
 .normal-section {
@@ -692,6 +694,7 @@ a {
   .scrolly__graphic {
     position: relative;
     top: 0;
+    justify-content: center;
   }
 
   .phone-shell {
@@ -699,7 +702,7 @@ a {
   }
 
   .scrolly__graphic {
-    width: min(360px, 94vw);
+    width: 100%;
   }
 }
 
