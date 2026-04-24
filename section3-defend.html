@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="void-backdrop" aria-hidden="true">
+    <canvas id="starfield" width="100" height="100"></canvas>
+    <div class="void-vignette"></div>
+    <div class="void-scanlines"></div>
+  </div>
   <main class="page shell">
     <p class="eyebrow">Section 3</p>
     <h1 data-aos="fade-up">Defend the Agent</h1>
@@ -36,6 +41,12 @@
   </main>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="starfield.js"></script>
+  <script>
+    if (window.Starfield) {
+      window.Starfield.init({ canvasId: "starfield", mood: "technical" });
+    }
+  </script>
   <script src="section3.js"></script>
 </body>
 </html>

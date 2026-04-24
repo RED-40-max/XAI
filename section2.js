@@ -1,5 +1,3 @@
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 const output = document.getElementById("output");
 const buildCount = document.getElementById("buildCount");
 const progressBar = document.getElementById("progressBar");
