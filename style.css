@@ -292,6 +292,19 @@ a {
   max-width: 65ch;
 }
 
+.hook-continuation {
+  margin-top: 1rem;
+}
+
+.hook-continuation h2 {
+  margin-bottom: 0.45rem;
+}
+
+.hook-continuation p {
+  font-size: clamp(17px, 1.08rem, 22px);
+  line-height: 1.72;
+}
+
 .placeholder-note {
   color: #ffe9a8;
   border: 1px dashed #8a7a45;
