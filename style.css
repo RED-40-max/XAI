@@ -323,6 +323,20 @@ a {
   margin-bottom: 0.5rem;
 }
 
+/* Strong override so every boxed content area matches (including new sections) */
+:is(#hook-continuation, #draft-placeholders, #plain-article, #section-factory, #section-defend, .output-box) p {
+  max-width: none !important;
+  width: 100% !important;
+  font-size: clamp(26px, 1.9vw, 36px) !important;
+  line-height: 1.52 !important;
+  letter-spacing: 0 !important;
+}
+
+:is(#hook-continuation, #draft-placeholders, #plain-article, #section-factory, #section-defend, .output-box) h2 {
+  font-size: clamp(30px, 2.2vw, 44px);
+  margin-bottom: 0.55rem;
+}
+
 .placeholder-note {
   color: #ffe9a8;
   border: 1px dashed #8a7a45;
