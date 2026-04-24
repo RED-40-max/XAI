@@ -2,7 +2,47 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "PixelWarden";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/PixelWarden.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Smallest Pixel-7";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/smallest_pixel-7.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Mini Pixel-7";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/mini_pixel-7.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Serif Pixel-7";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/serif_pixel-7.woff") format("woff");
+}
+
 :root {
+  /* Type roles */
+  --font-h1: "PixelWarden", Georgia, "Times New Roman", serif;
+  --font-h2: "Smallest Pixel-7", "Courier New", Courier, monospace;
+  --font-h3: "Serif Pixel-7", Georgia, serif;
+  --font-body: "Mini Pixel-7", "Courier New", Courier, monospace;
+  --font-small: "Smallest Pixel-7", "Courier New", Courier, monospace;
+  --font-accent: "Serif Pixel-7", Georgia, serif;
+
   /* Agentic void + copper / gold star palette */
   --void-ink: #0b0b10;
   --ink: #f3f0ff;
@@ -84,11 +124,13 @@
 
 body {
   margin: 0;
-  font-family: "Inter", Arial, sans-serif;
+  font-family: var(--font-body);
   color: var(--ink);
-  line-height: 1.6;
+  line-height: 1.65;
   background: var(--agentic-bg);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Mood hooks for tiny UI tweaks (optional) */
@@ -105,12 +147,44 @@ body.star-mood--technical {
   --step-line: #3d4a4f;
 }
 
-h1,
-h2,
+h1 {
+  margin: 0;
+  font-family: var(--font-h1);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+h2 {
+  margin: 0;
+  font-family: var(--font-h2);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
 h3 {
   margin: 0;
-  font-family: "Space Grotesk", Arial, sans-serif;
-  line-height: 1.08;
+  font-family: var(--font-h3);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Accent: serif pixel + italic (synthetic oblique if no italic master) */
+em,
+.text-link,
+.eyebrow {
+  font-family: var(--font-accent);
+  font-style: italic;
+}
+
+/* Meta / captions (bitmap-friendly minimum size) */
+.byline,
+.footer,
+.footer p,
+.hero-arrow__label,
+.skip-link,
+.factory-status {
+  font-family: var(--font-small);
+  font-size: clamp(14px, 0.95rem, 20px);
 }
 
 a {
@@ -146,11 +220,11 @@ a {
 
 .hero-title {
   margin: 0 0 0.35em;
-  font-size: clamp(1.4rem, 3.2vw, 2.1rem);
-  line-height: 1.1;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0.02em;
   color: #ffffff;
   text-shadow: 0 0 0 1px #000, 2px 2px 0 #00000055;
   background: #1f1f22;
@@ -167,7 +241,6 @@ a {
 
 .byline {
   color: #3a3a3e;
-  font-size: 0.9rem;
 }
 
 .text-link {
@@ -401,7 +474,8 @@ a {
 .phone-header {
   background: #133232;
   color: #e5fffb;
-  font-weight: 600;
+  font-family: var(--font-h2);
+  font-weight: 400;
   text-align: center;
   padding: 0.8rem;
 }
@@ -448,9 +522,9 @@ a {
   margin: 0 auto;
   max-width: 100%;
   text-align: center;
-  font-family: "Space Grotesk", Arial, sans-serif;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-family: var(--font-h1);
+  font-size: clamp(1.1rem, 2.8vw, 1.65rem);
+  font-weight: 500;
   color: #ffd447;
   text-shadow: 2px 2px 0 #5e3f00;
   background: transparent;
