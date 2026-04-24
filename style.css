@@ -292,6 +292,14 @@ a {
   max-width: 65ch;
 }
 
+.placeholder-note {
+  color: #ffe9a8;
+  border: 1px dashed #8a7a45;
+  background: rgba(120, 92, 22, 0.18);
+  padding: 0.7rem 0.85rem;
+  border-radius: 10px;
+}
+
 .hero-landing__right {
   display: flex;
   flex-direction: column;
