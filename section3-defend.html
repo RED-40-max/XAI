@@ -17,8 +17,14 @@
     <p class="eyebrow">Section 3</p>
     <h1 data-aos="fade-up">Defend the Agent</h1>
     <p data-aos="fade-up" data-aos-delay="80">
-      Move with arrow keys and press space to shoot. Each invader bug stands for a common AI failure mode.
+      To use agent systems safely, it is not enough to know structure. You also need to understand failure modes in practice. Move with arrow keys and press space to shoot; each bug maps to a real AI failure pattern.
     </p>
+    <section class="output-box" data-aos="fade-up" data-aos-delay="120">
+      <h2>Failure Modes You Are Defending Against</h2>
+      <p><strong>Prompt Injection:</strong> external input manipulates objectives and overrides original intent.</p>
+      <p><strong>Internal Agent Dysfunction:</strong> the system drifts or hallucinates reflection, then reinforces errors.</p>
+      <p><strong>Autonomy Overreach:</strong> the agent takes tool actions beyond intended limits, creating real consequences.</p>
+    </section>
 
     <div class="defense-panel" data-aos="fade-up" data-aos-delay="160">
       <canvas id="gameCanvas" width="760" height="420"></canvas>
@@ -32,6 +38,13 @@
     <section id="bug-output" class="output-box" data-aos="fade-up" data-aos-delay="240">
       <h2>Bug Decoder</h2>
       <p>Shoot a bug in-game to see what it represents.</p>
+    </section>
+
+    <section class="output-box" data-aos="fade-up" data-aos-delay="280">
+      <h3>What Users Can Do</h3>
+      <p><strong>Limit access:</strong> avoid giving full permissions to banking, email, and sensitive files.</p>
+      <p><strong>Stay in the loop:</strong> review outputs before acting on money, identity, or communication steps.</p>
+      <p><strong>Know when to stop:</strong> if behavior drifts, pause, reset, and re-check goals instead of blindly iterating.</p>
     </section>
 
     <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>

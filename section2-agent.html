@@ -17,8 +17,17 @@
     <p class="eyebrow">Section 2</p>
     <h1 data-aos="fade-up">Build the Agent Factory</h1>
     <p data-aos="fade-up" data-aos-delay="80">
-      Click the parts in any order. Each click adds one component to your beginner-friendly "agent machine."
+      An AI agent is a system that can interpret tasks, break them into steps, use external tools, and act in the real world. Click the parts in any order to inspect the core components and how they reinforce each other.
     </p>
+    <section class="output-box" data-aos="fade-up" data-aos-delay="110">
+      <h2>Why This Matters</h2>
+      <p>
+        Unlike traditional software, agent systems do not operate through a single decision point. They use interacting loops of planning, memory, tool use, and reflection. Because of this structure, one wrong assumption can propagate across the system while the agent continues acting with confidence.
+      </p>
+      <p>
+        This model follows the same loop used in common agent frameworks: Plan → Act (Tools) → Store (Memory) → Reflect → Update → Repeat.
+      </p>
+    </section>
 
     <div class="card-grid" data-aos="fade-up" data-aos-delay="150">
       <button class="card" data-part="goal">Goal Parser</button>
@@ -39,6 +48,14 @@
         <div id="progressBar" class="progress-bar"></div>
       </div>
     </div>
+
+    <section class="output-box" data-aos="fade-up" data-aos-delay="300">
+      <h3>Reference Snapshot</h3>
+      <p><strong>Planning:</strong> breaks goals into steps, but flawed plans create compounding errors.</p>
+      <p><strong>Tools:</strong> enable external actions (APIs, files, search), turning mistakes into real-world consequences.</p>
+      <p><strong>Memory:</strong> persists context, but can repeatedly reuse bad assumptions.</p>
+      <p><strong>Reflection:</strong> self-correction loop that can either fix errors or reinforce them.</p>
+    </section>
 
     <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>
   </main>
