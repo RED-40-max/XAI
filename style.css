@@ -292,6 +292,17 @@ a {
   max-width: 65ch;
 }
 
+/* Unified boxed-section readability */
+.plain-article p,
+.normal-section p,
+.output-box p {
+  max-width: none;
+  width: 100%;
+  font-size: clamp(28px, 2.05vw, 40px);
+  line-height: 1.46;
+  letter-spacing: 0;
+}
+
 .hook-continuation {
   margin-top: 1rem;
   max-width: 100%;
