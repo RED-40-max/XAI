@@ -6,6 +6,7 @@
  * - Starfield: background mood is driven by the phone "theme" in the scrolly,
  *   then switches to calmer "technical" stars once you move past the story
  */
+import Typed from "typed.js";
 
 const bubble = document.getElementById("bubble");
 const storyOverlay = document.getElementById("storyOverlay");
