@@ -2,16 +2,29 @@ const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const startButton = document.getElementById("startGame");
 const scoreLabel = document.getElementById("scoreLabel");
+const levelLabel = document.getElementById("levelLabel");
 const statusLabel = document.getElementById("statusLabel");
 const bugOutput = document.getElementById("bug-output");
+const bugOverlay = document.getElementById("bugOverlay");
+const bugOverlayTitle = document.getElementById("bugOverlayTitle");
+const bugOverlayText = document.getElementById("bugOverlayText");
+const bugOverlayHint = document.getElementById("bugOverlayHint");
+const bugOverlayContinue = document.getElementById("bugOverlayContinue");
 
 const keys = { left: false, right: false, fire: false };
 const bullets = [];
 let bugs = [];
+let bugDirection = 1;
+let bugStepDown = 16;
+let lastBugMoveAt = 0;
+let bugMoveIntervalMs = 650;
+let nextBugType = 0;
 
 let gameLoopId = null;
 let score = 0;
 let gameRunning = false;
+let level = 1;
+let pausedByOverlay = false;
 
 const player = {
   x: canvas.width / 2 - 20,
@@ -35,20 +48,28 @@ const bugFacts = {
     text: "The agent takes actions with tools that were not actually intended by the user."
   }
 };
+const bugTypeOrder = ["prompt", "drift", "overreach"];
 
 function createBugs() {
   bugs = [];
-  const types = ["prompt", "drift", "overreach"];
+  const bugType = bugTypeOrder[nextBugType % bugTypeOrder.length];
+  nextBugType += 1;
+  const rows = Math.min(3 + Math.floor((level - 1) / 2), 5);
+  const cols = 8;
+  bugDirection = 1;
+  bugStepDown = 16 + Math.min(level, 4);
+  bugMoveIntervalMs = Math.max(180, 650 - (level - 1) * 60);
+  lastBugMoveAt = performance.now();
 
-  for (let row = 0; row < 3; row += 1) {
-    for (let col = 0; col < 8; col += 1) {
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < cols; col += 1) {
       bugs.push({
-        x: 70 + col * 76,
-        y: 60 + row * 48,
+        x: 70 + col * 74,
+        y: 48 + row * 42,
         w: 36,
         h: 22,
         alive: true,
-        type: types[row]
+        type: bugType
       });
     }
   }
@@ -56,8 +77,16 @@ function createBugs() {
 
 function startGame() {
   score = 0;
+  level = 1;
+  nextBugType = 0;
+  pausedByOverlay = false;
   scoreLabel.textContent = `Score: ${score}`;
+  levelLabel.textContent = `Level: ${level}`;
   statusLabel.textContent = "Status: Defending";
+  bugOutput.innerHTML = `
+    <h2>Bug Decoder</h2>
+    <p>Shoot a bug in-game to see what it represents.</p>
+  `;
   bullets.length = 0;
   createBugs();
   gameRunning = true;
@@ -93,6 +122,28 @@ function drawBugs() {
     ctx.fillRect(bug.x + 12, bug.y + 8, 4, 4);
     ctx.fillRect(bug.x + 20, bug.y + 8, 4, 4);
   });
+}
+
+function moveBugs(timestamp) {
+  if (timestamp - lastBugMoveAt < bugMoveIntervalMs) return;
+  lastBugMoveAt = timestamp;
+
+  let hitWall = false;
+  bugs.forEach((bug) => {
+    if (!bug.alive) return;
+    bug.x += bugDirection * (10 + Math.min(level, 6));
+    if (bug.x < 8 || bug.x + bug.w > canvas.width - 8) {
+      hitWall = true;
+    }
+  });
+
+  if (hitWall) {
+    bugDirection *= -1;
+    bugs.forEach((bug) => {
+      if (!bug.alive) return;
+      bug.y += bugStepDown;
+    });
+  }
 }
 
 function movePlayer() {
@@ -139,23 +190,59 @@ function showBugInfo(type) {
   `;
 }
 
+function showBugOverlay({ title, text, hint }) {
+  pausedByOverlay = true;
+  gameRunning = false;
+  bugOverlayTitle.textContent = title;
+  bugOverlayText.textContent = text;
+  bugOverlayHint.textContent = hint || "Click Continue to return to battle.";
+  bugOverlay.classList.remove("is-hidden");
+}
+
+function hideBugOverlay() {
+  bugOverlay.classList.add("is-hidden");
+  pausedByOverlay = false;
+}
+
 function checkWin() {
   const remaining = bugs.some((bug) => bug.alive);
   if (!remaining) {
     gameRunning = false;
-    statusLabel.textContent = "Status: You defended the agent!";
+    const clearedType = bugs[0] ? bugs[0].type : "prompt";
+    showBugOverlay({
+      title: `Level ${level} Cleared`,
+      text: `${bugFacts[clearedType].title}: ${bugFacts[clearedType].text}`,
+      hint: "Bug analysis complete. Continue to the next wave."
+    });
+    level += 1;
+    levelLabel.textContent = `Level: ${level}`;
+    statusLabel.textContent = "Status: Preparing next level";
   }
 }
 
-function loop() {
+function checkLose() {
+  const breach = bugs.some((bug) => bug.alive && bug.y + bug.h >= player.y - 2);
+  if (!breach) return;
+  gameRunning = false;
+  showBugOverlay({
+    title: "Ship Corrupted",
+    text: "The alien wave reached your ship and started corrupting core systems.",
+    hint: "Bug corruption animation shown. Continue to restart the level."
+  });
+  statusLabel.textContent = "Status: Ship corrupted";
+}
+
+function loop(timestamp = performance.now()) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "#080b19";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  if (gameRunning) {
+  if (gameRunning && !pausedByOverlay) {
     movePlayer();
+    moveBugs(timestamp);
     moveBullets();
     checkCollisions();
+    checkLose();
     checkWin();
   }
 
@@ -182,6 +269,14 @@ document.addEventListener("keyup", (event) => {
 });
 
 startButton.addEventListener("click", startGame);
+bugOverlayContinue.addEventListener("click", () => {
+  hideBugOverlay();
+  bullets.length = 0;
+  player.x = canvas.width / 2 - player.w / 2;
+  createBugs();
+  gameRunning = true;
+  statusLabel.textContent = "Status: Defending";
+});
 
 if (window.AOS) {
   window.AOS.init({

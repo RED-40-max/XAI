@@ -31,6 +31,7 @@
       <div class="game-controls">
         <button class="button" id="startGame">Start / Restart</button>
         <span id="scoreLabel">Score: 0</span>
+        <span id="levelLabel">Level: 1</span>
         <span id="statusLabel">Status: Ready</span>
       </div>
     </div>
@@ -49,6 +50,19 @@
 
     <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>
   </main>
+
+  <div id="bugOverlay" class="bug-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="bugOverlayTitle">
+    <div class="bug-overlay__card">
+      <h2 id="bugOverlayTitle">Bug Event</h2>
+      <p id="bugOverlayText">A bug attacked the ship systems.</p>
+      <div class="bug-overlay__anim" aria-hidden="true">
+        <div class="bug-overlay__ship-part"></div>
+        <div class="bug-overlay__attacker"></div>
+      </div>
+      <p id="bugOverlayHint" class="bug-overlay__hint">Click Continue to return to battle.</p>
+      <button class="button" id="bugOverlayContinue">Continue</button>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="starfield.js?v=2"></script>
