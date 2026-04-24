@@ -7,7 +7,6 @@
  */
 
 const phoneReel = document.getElementById("phoneReel");
-const phoneState = document.getElementById("phoneState");
 const scrollySection = document.getElementById("hook");
 const phoneSlides = phoneReel ? Array.from(phoneReel.querySelectorAll(".phone-slide")) : [];
 
@@ -21,7 +20,8 @@ function getScrollyProgress() {
 
 function updatePhoneReelFromProgress(progress) {
   if (!phoneReel || !phoneSlides.length) return;
-  const screenHeight = phoneState ? phoneState.clientHeight : 0;
+  const screen = phoneReel.parentElement;
+  const screenHeight = screen ? screen.clientHeight : 0;
   if (!screenHeight) return;
   const reelHeight = screenHeight * phoneSlides.length;
   const maxOffset = Math.max(0, reelHeight - screenHeight);
@@ -43,13 +43,8 @@ function isScrollyInFocus() {
 function updateBackgroundFromScroll() {
   const progress = getScrollyProgress();
   updatePhoneReelFromProgress(progress);
-  if (phoneState) {
-    if (progress < 0.34) phoneState.dataset.theme = "safe";
-    else if (progress < 0.67) phoneState.dataset.theme = "odd";
-    else phoneState.dataset.theme = "danger";
-  }
-  if (window.Starfield && isScrollyInFocus() && phoneState) {
-    window.Starfield.setFromPhoneTheme(phoneState.dataset.theme || "safe");
+  if (window.Starfield && isScrollyInFocus()) {
+    window.Starfield.setMood("uneasy");
   }
   if (!window.Starfield || isScrollyInFocus()) return;
   const hintSections = document.querySelectorAll("[data-star-hint]");

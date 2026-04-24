@@ -472,7 +472,7 @@ a {
 .scrolly {
   display: block;
   position: relative;
-  min-height: 320vh;
+  min-height: 300vh;
   margin-top: 2.5rem;
   padding: 0;
 }
@@ -481,10 +481,10 @@ a {
   position: sticky;
   top: 1.25rem;
   height: fit-content;
-  width: 100%;
+  width: min(420px, 92vw);
   display: flex;
   justify-content: center;
-  margin: 0;
+  margin: 0 auto;
 }
 
 .phone-shell {
@@ -524,6 +524,7 @@ a {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center center;
   display: block;
   background: #050507;
 }
@@ -702,7 +703,7 @@ a {
   }
 
   .scrolly__graphic {
-    width: 100%;
+    width: min(360px, 94vw);
   }
 }
 
