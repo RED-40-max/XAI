@@ -194,6 +194,7 @@ em,
 .factory-status {
   font-family: var(--font-small);
   font-size: clamp(14px, 0.95rem, 20px);
+  color: #2e2424;
 }
 
 a {
