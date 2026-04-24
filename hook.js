@@ -1,48 +1,38 @@
 /**
  * Main page behavior (loaded as a normal <script> — no import/bundler).
- * - Scrollama: highlights the step you are reading + updates the phone bubble
- * - Typed.js: "live typing" for the me / dad lines
+ * - Scrollama: highlights the step you are reading + updates phone imagery
  * - AOS: light entrance motion on the hero + sections
  * - Starfield: background mood is driven by the phone "theme" in the scrolly,
  *   then switches to calmer "technical" stars once you move past the story
  */
-import Typed from "typed.js";
 
-const bubble = document.getElementById("bubble");
-const storyOverlay = document.getElementById("storyOverlay");
+const phoneSlide = document.getElementById("phoneSlide");
 const phoneState = document.getElementById("phoneState");
 const steps = document.querySelectorAll(".step");
 const scrollySection = document.getElementById("hook");
+const stepList = Array.from(steps);
+const phoneFrames = ["assets/1.png", "assets/2.png", "assets/3.png"];
+let activeFrameIndex = 0;
 
-let activeTypedInstance = null;
-
-function destroyTypedIfNeeded() {
-  if (activeTypedInstance) {
-    activeTypedInstance.destroy();
-    activeTypedInstance = null;
-  }
+function frameIndexFromStep(stepIndex) {
+  if (stepList.length <= 1) return 0;
+  const progress = stepIndex / (stepList.length - 1);
+  return Math.min(phoneFrames.length - 1, Math.floor(progress * phoneFrames.length));
 }
 
-function updateBubble(type, text) {
-  destroyTypedIfNeeded();
-  if (!bubble) return;
-  bubble.className = `msg ${type}`;
-  bubble.innerHTML = "";
-
-  // Live typing is meant to feel like WhatsApp-style composing for chat lines.
-  if (type === "me" || type === "dad") {
-    if (window.Typed) {
-      activeTypedInstance = new Typed("#bubble", {
-        strings: [text],
-        typeSpeed: 23,
-        showCursor: false,
-      });
-    } else {
-      bubble.textContent = text;
-    }
-  } else {
-    bubble.textContent = text;
-  }
+function updatePhoneFrame(stepIndex) {
+  if (!phoneSlide) return;
+  const nextIndex = frameIndexFromStep(stepIndex);
+  if (nextIndex === activeFrameIndex) return;
+  activeFrameIndex = nextIndex;
+  phoneSlide.classList.add("is-changing");
+  window.setTimeout(() => {
+    phoneSlide.src = phoneFrames[nextIndex];
+    phoneSlide.alt = `Chat thread frame ${nextIndex + 1}`;
+  }, 90);
+  window.setTimeout(() => {
+    phoneSlide.classList.remove("is-changing");
+  }, 260);
 }
 
 function isScrollyInFocus() {
@@ -79,15 +69,14 @@ function updateBackgroundFromScroll() {
 
 function handleStepEnter(response) {
   const step = response.element;
-  const type = step.dataset.type;
-  const text = step.dataset.text;
   const theme = step.dataset.theme || "safe";
 
   steps.forEach((item) => item.classList.remove("is-active"));
   step.classList.add("is-active");
 
   if (phoneState) phoneState.dataset.theme = theme;
-  updateBubble(type, text);
+  const idx = stepList.indexOf(step);
+  updatePhoneFrame(idx < 0 ? 0 : idx);
   if (window.Starfield) {
     window.Starfield.setFromPhoneTheme(theme);
   }
@@ -126,11 +115,6 @@ if (window.AOS) {
 
 if (window.Starfield) {
   window.Starfield.init({ canvasId: "starfield", mood: "calm" });
-}
-
-if (storyOverlay) {
-  storyOverlay.textContent =
-    "Scroll to watch one text thread go from normal to not-my-dad in real time.";
 }
 
 updateBackgroundFromScroll();
