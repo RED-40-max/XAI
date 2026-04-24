@@ -130,6 +130,7 @@ body {
   line-height: 1.65;
   background: var(--agentic-bg);
   min-height: 100vh;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -198,6 +199,12 @@ em,
 
 a {
   color: inherit;
+}
+
+canvas,
+img {
+  max-width: 100%;
+  height: auto;
 }
 
 .shell {
@@ -754,6 +761,7 @@ a {
   font-size: clamp(2.6rem, 7vw, 5.2rem);
   padding: 0.48em 0.62em 0.4em;
   letter-spacing: 0.03em;
+  overflow-wrap: anywhere;
 }
 
 .hero-subtitle {
@@ -780,4 +788,24 @@ a {
   font-size: 0.85rem;
   letter-spacing: 0.07em;
   color: #55535d;
+}
+
+@media (max-width: 640px) {
+  .hero-landing.shell {
+    width: min(1400px, 94vw);
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 10vw, 3.3rem);
+    padding: 0.45em 0.5em 0.35em;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 3.7vw, 1.1rem);
+  }
+
+  .hero-subtitle::after {
+    width: 100%;
+    height: 8px;
+  }
 }
