@@ -609,6 +609,7 @@ a {
 
 .image-row figure {
   margin: 0;
+  min-width: 0;
   width: 100%;
   max-width: 100%;
   overflow: hidden;

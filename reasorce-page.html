@@ -111,6 +111,28 @@
     if (window.Starfield) {
       window.Starfield.init({ canvasId: "starfield", mood: "technical" });
     }
+
+    // Runtime guard: force methodology images to fit inside their figure/container.
+    function fitMethodologyImages() {
+      const images = document.querySelectorAll(".image-row img");
+      images.forEach((img) => {
+        const frame = img.closest("figure");
+        if (!frame) return;
+        const frameWidth = frame.clientWidth;
+        if (!frameWidth) return;
+
+        const naturalWidth = img.naturalWidth || frameWidth;
+        const targetWidth = Math.min(frameWidth, naturalWidth);
+        img.style.width = `${targetWidth}px`;
+        img.style.maxWidth = "100%";
+        img.style.height = "auto";
+        img.style.display = "block";
+        img.style.marginInline = "auto";
+      });
+    }
+
+    window.addEventListener("load", fitMethodologyImages);
+    window.addEventListener("resize", fitMethodologyImages);
   </script>
 </body>
 </html>
