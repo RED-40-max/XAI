@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Technical Reasources, Genre conventions, and Methodology</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="void-backdrop" aria-hidden="true">
+    <canvas id="starfield" width="100" height="100"></canvas>
+    <div class="void-vignette"></div>
+    <div class="void-scanlines"></div>
+  </div>
+  <main class="page shell">
+    <section data-aos="fade-up" data-aos-delay="200">
+        <h2>Technical Resources / Implementation</h2>
+        <p>
+          I built this as a web-based interactive blog using a simple stack: HTML, CSS, and JavaScript. I didn’t use any heavy frameworks like React because I wanted full control and something I could realistically build and understand myself. Instead, I mixed my own code with lightweight libraries where it made sense.
+        </p>
+        <ul>
+          <li><b>HTML / CSS / JavaScript</b> – core structure, styling, and all interactivity</li>
+          <li><b>AOS (Animate On Scroll)</b> – handles scroll-based animations using <code>data-aos</code></li>
+          <li><b>Scrollama</b> – helps structure scroll-driven storytelling</li>
+          <li><b>Typed.js</b> – supports dynamic text / typing effects</li>
+          <li><b>starfield.js</b> – custom canvas background animation (the “agentic void” feel)</li>
+          <li><b>hook.js</b> – controls scroll behavior and page interactions</li>
+          <li><b>section2.js</b> – interactive “Build the Agent” diagram</li>
+          <li><b>section3.js</b> – canvas-based mini game (failure simulation)</li>
+          <li><b>Static assets</b> – images and icons for visuals</li>
+          <li><b>External sources</b> – Medium article + research links (Gartner, arXiv, YouTube)</li>
+          <li><b>Deployment</b> – static site (GitHub Pages style), no backend</li>
+        </ul>
+        <p>
+          The main idea: I used libraries when it saved time (animations, effects), but kept the important logic custom so I still understood and controlled everything.
+        </p>
+      </section>
+      
+      <section data-aos="fade-up" data-aos-delay="260">
+        <h2>Genre Conventions (Why this format works)</h2>
+        <p>
+          This isn’t just a normal essay—it’s a mix of interactive narrative, explainer, and simulation. I structured it so users move through it naturally instead of just reading blocks of text.
+        </p>
+        <ul>
+          <li>Hook (story) → explanation → system breakdown → failure simulation → real-world takeaway</li>
+          <li>Scroll-based storytelling to guide pacing</li>
+          <li>Styled text + visuals to keep it engaging</li>
+          <li>Interactive components instead of just static writing</li>
+        </ul>
+        <p>
+          The interactivity isn’t just for aesthetics—it lets users actually experience how AI systems behave and fail, which is way more effective for a non-technical audience than a traditional paper.
+        </p>
+        <p>
+          For accessibility, I also provide a simpler version of the blog with a more straightforward script so the content is still readable without the interactive elements.
+        </p>
+      </section>
+      
+      <section data-aos="fade-up" data-aos-delay="320">
+        <h2>Methodology (How I built it)</h2>
+        <p>
+          I didn’t just jump into coding. I spent a lot of time planning the structure, ideas, and flow first, then did a focused build phase of about a week.
+        </p>
+        <ul>
+          <li>Planned concept + structure ahead of time</li>
+          <li>Built quickly in a ~1 week sprint</li>
+          <li>Kept the stack simple on purpose</li>
+          <li>Split features into small JS files</li>
+          <li>Adapted existing examples when useful</li>
+          <li>Constant testing → adjusting → refining</li>
+        </ul>
+        <p>
+          I didn’t try to reinvent everything. I used existing tools where it made sense and focused my effort on the interactive parts that actually matter. Because of that, this is a realistic student project—nothing overengineered, just a solid balance of custom work and smart reuse.
+        </p>
+      </section>
+    
+
+    <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>
+  </main>
+
+
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="starfield.js?v=2"></script>
+  <script>
+    if (window.Starfield) {
+      window.Starfield.init({ canvasId: "starfield", mood: "technical" });
+    }
+  </script>
+  <script src="section3.js?v=2"></script>
+</body>
+</html>
