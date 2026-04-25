@@ -588,6 +588,7 @@ a {
   border-radius: 22px;
   padding: clamp(1.2rem, 3vw, 2rem);
   backdrop-filter: blur(5px);
+  overflow: hidden;
 }
 
 .normal-section h2 {
@@ -601,6 +602,9 @@ a {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
   align-items: start;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .image-row figure {
@@ -618,6 +622,13 @@ a {
   max-height: min(52vh, 460px);
   object-fit: contain;
   border-radius: 10px;
+}
+
+.normal-section img,
+.output-box img,
+.plain-article img {
+  max-width: 100%;
+  height: auto;
 }
 
 .image-row figcaption {
