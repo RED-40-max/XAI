@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Technical Reasources, Genre conventions, and Methodology</title>
+  <title>Technical Resources, Genre Conventions, and Methodology</title>
   <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -14,36 +14,36 @@
     <div class="void-scanlines"></div>
   </div>
   <main class="page shell">
-    <section data-aos="fade-up" data-aos-delay="200">
+    <section class="normal-section shell" data-aos="fade-up" data-aos-delay="200">
         <h2>Technical Resources / Implementation</h2>
         <p>
           I built this as a web-based interactive blog using a simple stack: HTML, CSS, and JavaScript. I didn’t use any heavy frameworks like React because I wanted full control and something I could realistically build and understand myself. Instead, I mixed my own code with lightweight libraries where it made sense.
         </p>
         <ul>
-          <li><b>HTML / CSS / JavaScript</b> – core structure, styling, and all interactivity</li>
-          <li><b>AOS (Animate On Scroll)</b> – handles scroll-based animations using <code>data-aos</code></li>
-          <li><b>Scrollama</b> – helps structure scroll-driven storytelling</li>
-          <li><b>Typed.js</b> – supports dynamic text / typing effects</li>
-          <li><b>starfield.js</b> – custom canvas background animation (the “agentic void” feel)</li>
-          <li><b>hook.js</b> – controls scroll behavior and page interactions</li>
-          <li><b>section2.js</b> – interactive “Build the Agent” diagram</li>
-          <li><b>section3.js</b> – canvas-based mini game (failure simulation)</li>
-          <li><b>Static assets</b> – images and icons for visuals</li>
-          <li><b>External sources</b> – Medium article + research links (Gartner, arXiv, YouTube)</li>
-          <li><b>Deployment</b> – static site (GitHub Pages style), no backend</li>
+          <li><b>HTML / CSS / JavaScript</b> - core structure, styling, and all interactivity</li>
+          <li><b>AOS (Animate On Scroll)</b> - handles scroll-based animations using <code>data-aos</code></li>
+          <li><b>Scrollama</b> - helps structure scroll-driven storytelling</li>
+          <li><b>Typed.js</b> - supports dynamic text and typing effects</li>
+          <li><b>starfield.js</b> - custom canvas background animation (the "void" feel)</li>
+          <li><b>hook.js</b> - controls scroll behavior and page interactions</li>
+          <li><b>section2.js</b> - interactive "Build the Agent" diagram</li>
+          <li><b>section3.js</b> - canvas-based mini game (failure simulation)</li>
+          <li><b>Static assets</b> - images and icons for visuals</li>
+          <li><b>External sources</b> - Medium article and research links (Gartner, arXiv, YouTube)</li>
+          <li><b>Deployment</b> - static site (GitHub Pages style), no backend</li>
         </ul>
         <p>
           The main idea: I used libraries when it saved time (animations, effects), but kept the important logic custom so I still understood and controlled everything.
         </p>
       </section>
       
-      <section data-aos="fade-up" data-aos-delay="260">
-        <h2>Genre Conventions (Why this format works)</h2>
+    <section class="normal-section shell" data-aos="fade-up" data-aos-delay="260">
+        <h2>Genre Conventions (Why This Format Works)</h2>
         <p>
           This isn’t just a normal essay—it’s a mix of interactive narrative, explainer, and simulation. I structured it so users move through it naturally instead of just reading blocks of text.
         </p>
         <ul>
-          <li>Hook (story) → explanation → system breakdown → failure simulation → real-world takeaway</li>
+          <li>Hook (story) -> explanation -> system breakdown -> failure simulation -> real-world takeaway</li>
           <li>Scroll-based storytelling to guide pacing</li>
           <li>Styled text + visuals to keep it engaging</li>
           <li>Interactive components instead of just static writing</li>
@@ -56,7 +56,7 @@
         </p>
       </section>
       
-      <section data-aos="fade-up" data-aos-delay="320">
+    <section class="normal-section shell" data-aos="fade-up" data-aos-delay="320">
         <h2>Methodology (How I built it)</h2>
       
         <p>
@@ -91,8 +91,8 @@
           This process was iterative: I planned the concept over a longer period, then used a focused build sprint to turn the design into a working static website. I kept the tech stack simple on purpose, used libraries where they saved time, and focused my custom coding on the parts that mattered most: the interactive diagram, scroll behavior, animated background, and failure-simulation game.
         </p>
       
-        <p>
-          This also supports the rubric because the method connects technology, genre, audience, and purpose: the code is not just decorative, but used to help readers understand how AI agents work, how they fail, and how users can respond. :contentReference[oaicite:0]{index=0}
+      <p>
+          This also supports the rubric because the method connects technology, genre, audience, and purpose: the code is not just decorative, but used to help readers understand how AI agents work, how they fail, and how users can respond.
         </p>
       </section>
     
@@ -105,10 +105,12 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="starfield.js?v=2"></script>
   <script>
+    if (window.AOS) {
+      window.AOS.init({ once: true, duration: 700 });
+    }
     if (window.Starfield) {
       window.Starfield.init({ canvasId: "starfield", mood: "technical" });
     }
   </script>
-  <script src="section3.js?v=2"></script>
 </body>
 </html>
