@@ -595,6 +595,37 @@ a {
   margin-bottom: 0.6rem;
 }
 
+.image-row {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.image-row figure {
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.image-row img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: min(52vh, 460px);
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.image-row figcaption {
+  margin-top: 0.45rem;
+  font-size: clamp(13px, 0.9rem, 16px);
+  color: #d0c7de;
+}
+
 .button {
   display: inline-block;
   margin-top: 0.8rem;
@@ -602,10 +633,11 @@ a {
   border-radius: 10px;
   border: 2px solid #110f18;
   background: linear-gradient(120deg, var(--star-bright), #b84d45);
-  color: #0b0b0f;
+  color: #ffffff;
   font-size: clamp(15px, 0.98rem, 18px);
-  font-weight: 800;
+  font-weight: 400;
   text-decoration: none;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   transition: transform 120ms ease, box-shadow 0.2s;
   box-shadow: 0 4px 0 #3b1518;
 }
@@ -617,6 +649,12 @@ a {
 
 .button:hover {
   transform: translateY(-2px);
+}
+
+.hero-cta {
+  color: #ffffff;
+  font-weight: 400;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.45);
 }
 
 .footer {
@@ -933,6 +971,10 @@ a {
 
   .diagram-stage {
     min-height: 380px;
+  }
+
+  .image-row {
+    grid-template-columns: 1fr;
   }
 }
 
