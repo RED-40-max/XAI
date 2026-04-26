@@ -730,21 +730,30 @@ a {
   overflow: hidden;
 }
 
-.factory-svg {
-  display: block;
+.factory-map {
+  position: relative;
+  min-height: 620px;
+  border-radius: 14px;
+  background: #f4f5f8;
+  border: 2px solid #1c1b22;
+  color: #10111a;
+}
+
+.factory-flow {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  min-height: 420px;
+  height: 100%;
 }
 
 .flow-path {
   fill: none;
-  stroke: #8ea3ea;
-  stroke-width: 2.5;
+  stroke: #7f8fc9;
+  stroke-width: 2.2;
   stroke-linecap: round;
-  stroke-dasharray: 10 10;
-  opacity: 0.45;
-  animation: flowDash 14s linear infinite;
+  stroke-dasharray: 9 8;
+  opacity: 0.55;
+  animation: flowDash 13s linear infinite;
   transition: stroke 160ms ease, opacity 160ms ease, stroke-width 160ms ease;
 }
 
@@ -754,11 +763,11 @@ a {
 }
 
 .flow-path.is-lit {
-  stroke: #ffe38f;
+  stroke: #325ed6;
   stroke-width: 3;
   opacity: 1;
-  animation-duration: 6s;
-  filter: drop-shadow(0 0 4px rgba(255, 227, 143, 0.45));
+  animation-duration: 4.8s;
+  filter: drop-shadow(0 0 3px rgba(50, 94, 214, 0.35));
 }
 
 @keyframes flowDash {
@@ -768,52 +777,154 @@ a {
 }
 
 .agent-node {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.15rem;
+  border-radius: 10px;
+  border: 2px solid #b7bbca;
+  background: #ffffff;
+  color: #1a1c29;
+  text-align: center;
+  padding: 0.6rem 0.7rem;
   cursor: pointer;
   outline: none;
-}
-
-.agent-node .node-box {
-  fill: rgba(24, 35, 62, 0.88);
-  stroke: rgba(167, 199, 255, 0.62);
-  stroke-width: 2;
-  transition: fill 150ms ease, stroke 150ms ease, filter 150ms ease;
+  transition: border-color 150ms ease, box-shadow 150ms ease, transform 120ms ease;
 }
 
 .agent-node .node-title {
-  fill: #f3f6ff;
   font-family: var(--font-small);
-  font-size: 28px;
-  pointer-events: none;
+  font-size: clamp(14px, 1.05vw, 17px);
+  font-weight: 700;
+  color: #15172a;
 }
 
 .agent-node .node-desc {
-  fill: #c7d5ff;
   font-family: var(--font-body);
-  font-size: 17px;
-  pointer-events: none;
+  font-size: clamp(12px, 0.86vw, 14px);
+  color: #3d425d;
 }
 
-.agent-node.is-active .node-box,
-.agent-node:hover .node-box,
-.agent-node:focus-visible .node-box {
-  fill: rgba(53, 74, 124, 0.95);
-  stroke: #ffe38f;
-  filter: drop-shadow(0 0 10px rgba(255, 227, 143, 0.35));
+.agent-node .node-sub {
+  font-family: var(--font-body);
+  font-size: clamp(11px, 0.75vw, 13px);
+  color: #5c617e;
 }
 
-.agent-node:focus-visible .node-box {
-  stroke-width: 3;
+.agent-node:hover,
+.agent-node:focus-visible {
+  transform: translateY(-1px);
+}
+
+.agent-node.is-active,
+.agent-node:focus-visible {
+  border-color: #2f5edb;
+  box-shadow: 0 0 0 3px rgba(47, 94, 219, 0.14);
+  background: #eef3ff;
+}
+
+.card-tools {
+  left: 5%;
+  top: 23%;
+  width: 23%;
+  min-height: 176px;
+}
+
+.card-plan {
+  right: 5%;
+  top: 23%;
+  width: 23%;
+  min-height: 176px;
+}
+
+.card-mem-short {
+  left: 31%;
+  top: 8%;
+  width: 18%;
+  min-height: 82px;
+}
+
+.card-mem-long {
+  right: 31%;
+  top: 8%;
+  width: 18%;
+  min-height: 82px;
+}
+
+.card-brain {
+  left: 31%;
+  top: 28%;
+  width: 38%;
+  min-height: 146px;
+  background: #f5d9dc;
+  border-color: #cda5ab;
+}
+
+.card-action {
+  left: 36%;
+  bottom: 7%;
+  width: 28%;
+  min-height: 92px;
+}
+
+.card-reflect {
+  right: 7%;
+  bottom: 8%;
+  width: 18%;
+  min-height: 78px;
 }
 
 @media (max-width: 860px) {
-  .factory-svg {
-    min-height: 360px;
+  .factory-map {
+    min-height: 760px;
   }
-  .agent-node .node-title {
-    font-size: 24px;
+
+  .card-tools,
+  .card-plan {
+    width: 42%;
+    min-height: 156px;
   }
-  .agent-node .node-desc {
-    font-size: 15px;
+
+  .card-tools {
+    left: 4%;
+    top: 24%;
+  }
+
+  .card-plan {
+    right: 4%;
+    top: 24%;
+  }
+
+  .card-mem-short {
+    left: 8%;
+    top: 8%;
+    width: 40%;
+  }
+
+  .card-mem-long {
+    right: 8%;
+    top: 8%;
+    width: 40%;
+  }
+
+  .card-brain {
+    left: 12%;
+    top: 46%;
+    width: 76%;
+    min-height: 126px;
+  }
+
+  .card-action {
+    left: 12%;
+    bottom: 7%;
+    width: 50%;
+  }
+
+  .card-reflect {
+    right: 12%;
+    bottom: 7%;
+    width: 34%;
   }
 }
 

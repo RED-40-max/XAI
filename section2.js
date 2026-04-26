@@ -9,34 +9,34 @@ const selectedParts = new Set();
 
 const partInfo = {
   goal: {
-    title: "Planning (Decomposition Engine)",
-    desc: "Planning breaks a goal into smaller steps so the agent can act systematically. A flawed plan does not fail once - it propagates across every following step.",
+    title: "Planning (Decision Layer)",
+    desc: "Planning breaks goals into concrete steps before action. If the plan is wrong, the rest of the loop can look confident while still drifting in the wrong direction.",
     analogy: "Like writing a recipe before cooking. One wrong instruction can throw off the entire meal.",
-    links: ["gm", "gf", "fg", "tg", "mg", "sg", "gs"]
+    links: ["b2p", "p2b", "p2a"]
   },
   memory: {
-    title: "Memory (Context + Persistence)",
-    desc: "Memory stores and retrieves past context. It helps continuity, but bad memory can be reused repeatedly and amplify mistakes.",
+    title: "Memory (Working + Persistent)",
+    desc: "Memory provides both short-term working context and long-term history. This improves continuity, but stale or wrong memory can be reused and amplified.",
     analogy: "Like using a shared notebook. If one bad note is written early, every later decision repeats it.",
-    links: ["gm", "mg", "mt", "tm"]
+    links: ["m2b"]
   },
   tools: {
     title: "Tools (External Action Layer)",
-    desc: "Tools let agents act beyond text - APIs, files, search, and system actions. This increases power and real-world risk.",
+    desc: "Tools and action execution let agents affect the outside world through APIs, files, search, and other systems. This is where model mistakes become real consequences.",
     analogy: "Like handing someone your keys, card, and phone to run errands - useful, but high impact if misunderstood.",
-    links: ["mt", "tm", "ft", "tg"]
+    links: ["b2t", "t2b", "b2a", "t2a", "p2a"]
   },
   safety: {
-    title: "Safety (Guardrails)",
-    desc: "Safety layers check what the agent should avoid. Guardrails reduce risk, but they must be actively designed and updated.",
-    analogy: "Like a gatekeeper who checks risky requests before action.",
-    links: ["sg", "gs"]
+    title: "Agent Brain (Controller / Decision Core)",
+    desc: "The controller coordinates planning, memory, and tools. It is the central orchestration layer where signals are combined into system behavior.",
+    analogy: "Like a project manager who delegates tasks, checks context, and keeps the full workflow aligned.",
+    links: ["m2b", "b2t", "t2b", "b2p", "p2b", "b2a"]
   },
   feedback: {
     title: "Reflection (Self-Correction Loop)",
-    desc: "Reflection evaluates past actions and adjusts next steps. It can correct mistakes, but weak reflection may reinforce errors instead.",
+    desc: "Reflection reviews outcomes and adjusts future decisions. Strong reflection improves reliability; weak reflection can reinforce bad patterns.",
     analogy: "Like reviewing a test - good reflection catches mistakes; bad reflection doubles down on them.",
-    links: ["gf", "fg", "ft"]
+    links: ["p2b", "b2p", "p2a"]
   }
 };
 
