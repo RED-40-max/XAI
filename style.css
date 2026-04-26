@@ -890,6 +890,10 @@ a {
   align-items: stretch;
   overflow-x: auto;
   padding-bottom: 0.25rem;
+  border: 2px solid #b7bbca;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 0.55rem;
 }
 
 .workflow-side {
@@ -949,30 +953,32 @@ a {
   font-size: clamp(12px, 0.86rem, 15px);
   cursor: pointer;
 }
-
-.factory-status {
-  margin-top: 1rem;
-  color: #dcd2eb;
-}
-
-.factory-status__label {
-  margin: 0 0 0.45rem;
-  font-family: var(--font-small);
-  font-size: clamp(13px, 0.9rem, 16px);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-}
-
-.factory-progress-steps {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.5rem;
-}
-
-.progress-step.is-complete {
+.workflow-step.is-complete {
   border-color: #2f5edb;
   box-shadow: 0 0 0 2px rgba(47, 94, 219, 0.14);
   background: #eef3ff;
+}
+
+.workflow-detail-row {
+  margin-top: 0.6rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  border: 2px solid #b7bbca;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.workflow-detail {
+  padding: 0.45rem 0.5rem;
+  border-right: 1px solid #ccd0dc;
+  font-size: clamp(11px, 0.78rem, 13px);
+  color: #23263a;
+  line-height: 1.35;
+  background: #fafbff;
+}
+
+.workflow-detail:last-child {
+  border-right: 0;
 }
 
 @media (max-width: 860px) {
@@ -1029,6 +1035,19 @@ a {
 
   .workflow-steps {
     flex-basis: 380px;
+  }
+
+  .workflow-detail-row {
+    grid-template-columns: 1fr;
+  }
+
+  .workflow-detail {
+    border-right: 0;
+    border-bottom: 1px solid #ccd0dc;
+  }
+
+  .workflow-detail:last-child {
+    border-bottom: 0;
   }
 }
 

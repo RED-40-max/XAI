@@ -100,6 +100,23 @@
               <button class="workflow-step" data-step="planning" aria-pressed="false">1 - Planning</button>
               <button class="workflow-step" data-step="act" aria-pressed="false">Act</button>
             </div>
+            <div class="workflow-detail-row" aria-label="Detailed workflow text">
+              <div class="workflow-detail">
+                <strong>1 Plan:</strong> Break task into steps, compare options, and draft findings.
+              </div>
+              <div class="workflow-detail">
+                <strong>2 Act (Tools):</strong> Use web search and APIs to gather source data.
+              </div>
+              <div class="workflow-detail">
+                <strong>3 Store (Memory):</strong> Save findings, sources, and intermediate results.
+              </div>
+              <div class="workflow-detail">
+                <strong>4 Reflect:</strong> Evaluate for accuracy, bias, and missing gaps.
+              </div>
+              <div class="workflow-detail">
+                <strong>5 Update:</strong> Refine plan and repeat until complete.
+              </div>
+            </div>
           </div>
 
           <button class="workflow-side workflow-output" data-part="result" aria-pressed="false">
@@ -112,24 +129,8 @@
       <aside id="output" class="diagram-popup output-box" aria-live="polite">
         <h2>Click a Component</h2>
         <p>Select a node in the diagram to view what it does, why it matters, and how it connects.</p>
+        <p><strong>Example flow:</strong> Plan task -> use tools -> store memory -> reflect -> update.</p>
       </aside>
-    </section>
-
-    <div class="factory-status" data-aos="fade-up" data-aos-delay="280" aria-label="Progress steps">
-      <p class="factory-status__label">Progress Steps</p>
-      <div class="factory-progress-steps">
-        <button class="workflow-step progress-step" data-step="prompt" aria-pressed="false">Prompt</button>
-        <button class="workflow-step progress-step" data-step="planning" aria-pressed="false">1 - Planning</button>
-        <button class="workflow-step progress-step" data-step="act" aria-pressed="false">Act</button>
-      </div>
-    </div>
-
-    <section class="output-box" data-aos="fade-up" data-aos-delay="300">
-      <h3>Reference Snapshot</h3>
-      <p><strong>Planning:</strong> breaks goals into steps, but flawed plans create compounding errors.</p>
-      <p><strong>Tools:</strong> enable external actions (APIs, files, search), turning mistakes into real-world consequences.</p>
-      <p><strong>Memory:</strong> persists context, but can repeatedly reuse bad assumptions.</p>
-      <p><strong>Reflection:</strong> self-correction loop that can either fix errors or reinforce them.</p>
     </section>
 
     <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>

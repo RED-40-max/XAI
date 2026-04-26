@@ -2,11 +2,8 @@ const output = document.getElementById("output");
 const partButtons = document.querySelectorAll(".agent-node, .workflow-side");
 const flowPaths = document.querySelectorAll(".flow-path");
 const stepButtons = document.querySelectorAll(".workflow-step");
-const progressStepButtons = document.querySelectorAll(".progress-step");
 
-const selectedParts = new Set();
 let activeStep = null;
-let progressStep = null;
 let lastSelectionId = null;
 
 const stepOrder = ["prompt", "planning", "act"];
@@ -81,10 +78,8 @@ function setActiveStep(stepKey) {
 function updateProgressFromStep(stepKey, selectionId) {
   if (selectionId === lastSelectionId) return;
   lastSelectionId = selectionId;
-
-  progressStep = stepKey;
-  const reached = stepOrder.includes(progressStep) ? stepOrder.indexOf(progressStep) : -1;
-  progressStepButtons.forEach((button) => {
+  const reached = stepOrder.includes(stepKey) ? stepOrder.indexOf(stepKey) : -1;
+  stepButtons.forEach((button) => {
     const stepKeyForBtn = button.dataset.step;
     const btnIndex = stepOrder.indexOf(stepKeyForBtn);
     button.classList.toggle("is-complete", btnIndex <= reached && reached >= 0);
@@ -121,7 +116,6 @@ function renderPart(partKey, selectionId) {
     <p><strong>Analogy:</strong> ${part.analogy}</p>
   `;
 
-  selectedParts.add(partKey);
   updateProgressFromStep(part.step, selectionId);
 }
 
