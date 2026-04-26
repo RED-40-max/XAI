@@ -1,9 +1,8 @@
 const output = document.getElementById("output");
-const buildCount = document.getElementById("buildCount");
-const progressBar = document.getElementById("progressBar");
 const partButtons = document.querySelectorAll(".agent-node, .workflow-side");
 const flowPaths = document.querySelectorAll(".flow-path");
 const stepButtons = document.querySelectorAll(".workflow-step");
+const progressStepButtons = document.querySelectorAll(".progress-step");
 
 const selectedParts = new Set();
 let activeStep = null;
@@ -52,7 +51,7 @@ const partInfo = {
     title: "Reflection (Self-Correction Loop)",
     desc: "Reflection reviews outcomes and adjusts future decisions. Strong reflection improves reliability; weak reflection can reinforce bad patterns.",
     analogy: "Like reviewing a test - good reflection catches mistakes; bad reflection doubles down on them.",
-    links: ["p2b", "b2p", "p2a"],
+    links: ["p2b", "b2p", "p2a", "p2r", "r2p"],
     step: "planning"
   },
   result: {
@@ -84,10 +83,12 @@ function updateProgressFromStep(stepKey, selectionId) {
   lastSelectionId = selectionId;
 
   progressStep = stepKey;
-  const count = stepOrder.includes(progressStep) ? stepOrder.indexOf(progressStep) + 1 : 0;
-  const percent = (count / 3) * 100;
-  buildCount.textContent = String(count);
-  progressBar.style.width = `${percent}%`;
+  const reached = stepOrder.includes(progressStep) ? stepOrder.indexOf(progressStep) : -1;
+  progressStepButtons.forEach((button) => {
+    const stepKeyForBtn = button.dataset.step;
+    const btnIndex = stepOrder.indexOf(stepKeyForBtn);
+    button.classList.toggle("is-complete", btnIndex <= reached && reached >= 0);
+  });
 }
 
 function renderPart(partKey, selectionId) {

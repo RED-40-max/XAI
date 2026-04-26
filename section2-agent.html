@@ -47,6 +47,8 @@
             <path class="flow-path" data-link="b2a" d="M500 320 L500 388" marker-end="url(#flowArrow)"></path>
             <path class="flow-path is-secondary" data-link="p2a" d="M722 310 L564 425" marker-end="url(#flowArrow)"></path>
             <path class="flow-path is-secondary" data-link="t2a" d="M278 310 L436 425" marker-end="url(#flowArrow)"></path>
+            <path class="flow-path is-secondary" data-link="p2r" d="M790 310 L790 452" marker-end="url(#flowArrow)"></path>
+            <path class="flow-path is-secondary" data-link="r2p" d="M758 452 L722 330" marker-end="url(#flowArrow)"></path>
           </svg>
 
           <button class="agent-node card-tools" data-part="tools" aria-pressed="false">
@@ -113,10 +115,12 @@
       </aside>
     </section>
 
-    <div class="factory-status" data-aos="fade-up" data-aos-delay="280">
-      Build progress: <span id="buildCount">0</span>/3
-      <div class="progress-wrap">
-        <div id="progressBar" class="progress-bar"></div>
+    <div class="factory-status" data-aos="fade-up" data-aos-delay="280" aria-label="Progress steps">
+      <p class="factory-status__label">Progress Steps</p>
+      <div class="factory-progress-steps">
+        <button class="workflow-step progress-step" data-step="prompt" aria-pressed="false">Prompt</button>
+        <button class="workflow-step progress-step" data-step="planning" aria-pressed="false">1 - Planning</button>
+        <button class="workflow-step progress-step" data-step="act" aria-pressed="false">Act</button>
       </div>
     </div>
 
