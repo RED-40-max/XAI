@@ -1106,6 +1106,16 @@ a {
   color: #c9c0d9;
 }
 
+.output-box ul {
+  margin: 0.2rem 0 0.8rem 1.2rem;
+  padding: 0;
+}
+
+.output-box li {
+  margin: 0.2rem 0;
+  color: #d4cce2;
+}
+
 .output-box h2,
 .output-box h3 {
   color: #fff9f6;
