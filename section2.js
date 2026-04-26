@@ -11,12 +11,14 @@ const stepOrder = ["prompt", "planning", "act"];
 const partInfo = {
   prompt: {
     title: "PROMPT (Input)",
-    what: "The user gives a task request. This is where the system gets its goal and constraints.",
-    analogy: "Like giving a teammate the assignment brief before they start.",
-    role: [
-      "Defines the objective and boundaries for the run.",
-      "Starts the planning and execution loop."
+    what: "Receives the user goal, context, and constraints that start the workflow.",
+    analogy: "Like handing a project brief to a team before work begins.",
+    examples: [
+      "Research EV vs gas cars and summarize findings",
+      "Schedule follow-ups based on priorities",
+      "Draft a response using past context"
     ],
+    risk: "Ambiguous or manipulative prompts can steer the whole system off-track from the first step.",
     links: [],
     step: "prompt"
   },
@@ -24,12 +26,12 @@ const partInfo = {
     title: "PLANNING (Decomposition Engine)",
     what: "Planning breaks a goal into smaller steps so the agent can act systematically. Planning enables complex behavior, but introduces compounding risk. A flawed plan does not fail once; it propagates across every step, making errors harder to detect as they scale (Weng, 2023).",
     analogy: "Like writing a recipe before cooking. One wrong instruction can throw off the entire meal.",
-    role: [
-      "Defines a sequence of actions the rest of the system follows.",
-      "Controlled by: Brain",
-      "Uses: Memory",
-      "Updated by: Reflection"
+    examples: [
+      "Break a research task into search, compare, summarize",
+      "Order steps before tool usage",
+      "Set subgoals and checkpoints"
     ],
+    risk: "Bad planning creates cascading errors: each later step executes confidently on flawed assumptions.",
     links: ["b2p", "p2b", "p2a"],
     step: "planning"
   },
@@ -37,12 +39,12 @@ const partInfo = {
     title: "MEMORY (Context + Persistence)",
     what: "Memory stores and retrieves information, including short-term context and long-term external data. Memory allows agents to build on past steps, but also to reinforce mistakes. Incorrect or outdated memory can be reused repeatedly, amplifying errors across actions and leading to unintended outcomes like misinformation or data exposure (Weng, 2023).",
     analogy: "Like using a shared notebook. If one bad note is written early, every later decision repeats it.",
-    role: [
-      "Acts as persistent context retrieved before decisions.",
-      "Updated after actions to shape future behavior.",
-      "Accessed by: Brain, Planning",
-      "Updated by: Tools, Reflection"
+    examples: [
+      "Store recent conversation context",
+      "Retrieve prior preferences or constraints",
+      "Track intermediate results across steps"
     ],
+    risk: "Outdated or poisoned memory can be repeatedly reused, causing persistent misinformation and drift.",
     links: ["m2b"],
     step: "planning"
   },
@@ -50,11 +52,12 @@ const partInfo = {
     title: "TOOLS (External Action Layer)",
     what: "Tools allow the agent to act beyond text generation (APIs, search, code execution, financial systems). Tools make agents powerful, but also introduce real world consequences. As agents gain access to systems (banking, files, APIs), mistakes move to real impacts: financial, operational, or security-related (CBA, 2026).",
     analogy: "Like handing someone your keys, card, and phone to run errands - useful, but high impact if misunderstood.",
-    role: [
-      "Executes actions and expands real-world capability.",
-      "Called by: Brain",
-      "Returns results to: Brain, Memory"
+    examples: [
+      "Use web search and APIs",
+      "Write/read files and send updates",
+      "Trigger actions in external platforms"
     ],
+    risk: "Over-permissioned or misused tools can cause real-world damage: leaks, wrong transactions, or unsafe actions.",
     links: ["b2t", "t2b", "b2a", "t2a", "p2a"],
     step: "act"
   },
@@ -62,11 +65,12 @@ const partInfo = {
     title: "AGENT BRAIN (Controller / Decision Core)",
     what: "The controller coordinates planning, memory, tools, and reflection. It decides what to do next and keeps the full loop aligned.",
     analogy: "Like a project manager who delegates tasks, checks context, and keeps the full workflow aligned.",
-    role: [
-      "Calls planning and tools.",
-      "Reads and updates memory.",
-      "Adjusts behavior from reflection feedback."
+    examples: [
+      "Select next action from plan",
+      "Route requests to tools",
+      "Integrate feedback from reflection"
     ],
+    risk: "If core reasoning drifts, the whole system can appear coherent while repeatedly making bad decisions.",
     links: ["m2b", "b2t", "t2b", "b2p", "p2b", "b2a"],
     step: "planning"
   },
@@ -74,11 +78,12 @@ const partInfo = {
     title: "REFLECTION (Self-Correction Loop)",
     what: "Reflection allows the agent to evaluate past actions and adjust future behavior. Reflection enables adaptation, but can fail. Agents may generate incorrect self-feedback ('hallucinatory reflection'), reinforcing bad decisions instead of correcting them (Shinn et al., 2023). Over time, this creates self-reinforcing failure loops.",
     analogy: "Like reviewing a test - good reflection catches mistakes; bad reflection doubles down on them.",
-    role: [
-      "Continuously reviews and critiques prior outputs.",
-      "Feeds into: Brain, Planning",
-      "Updates: Memory"
+    examples: [
+      "Evaluate output quality and relevance",
+      "Revise the plan after failed actions",
+      "Update memory with corrective notes"
     ],
+    risk: "Reflection can become corrupt when false self-critique is treated as truth, reinforcing failure loops.",
     links: ["p2b", "b2p", "p2a", "p2r", "r2p"],
     step: "planning"
   },
@@ -86,10 +91,12 @@ const partInfo = {
     title: "OUTPUT (Final Product)",
     what: "After planning and action, the agent returns a usable final output with findings.",
     analogy: "Like turning rough notes into a finished report.",
-    role: [
-      "Delivers the result to the user.",
-      "Can trigger another loop if refinement is needed."
+    examples: [
+      "Final summary report",
+      "Draft message or recommendation",
+      "Structured result with key evidence"
     ],
+    risk: "If earlier stages were wrong, output can look polished while hiding inaccurate or unsafe conclusions.",
     links: [],
     step: "act"
   }
@@ -148,11 +155,12 @@ function renderPart(partKey, selectionId) {
   output.innerHTML = `
     <h2>${part.title}</h2>
     <p><strong>What it is:</strong> ${part.what}</p>
-    <p><strong>Analogy:</strong> ${part.analogy}</p>
-    <p><strong>Connections / Role in System</strong></p>
+    <p><strong>Analogy / Place in system:</strong> ${part.analogy}</p>
+    <p><strong>Examples of what it can do</strong></p>
     <ul>
-      ${(part.role || []).map((item) => `<li>${item}</li>`).join("")}
+      ${(part.examples || []).map((item) => `<li>${item}</li>`).join("")}
     </ul>
+    <p><strong>What could go wrong / corruption risk:</strong> ${part.risk}</p>
     <p><strong>Loop:</strong> Plan >> Act (Tools) >> Store (Memory) >> Reflect >> Update >> Repeat</p>
   `;
 
