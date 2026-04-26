@@ -84,6 +84,27 @@
             <span class="node-sub">Evaluate and improve</span>
           </button>
         </div>
+
+        <div class="workflow-lane" aria-label="Example workflow lane">
+          <button class="workflow-side workflow-input" data-part="prompt" aria-pressed="false">
+            <p class="workflow-side__title">Input: Prompt</p>
+            <p>"Research EV vs gas cars and summarize the impact."</p>
+          </button>
+
+          <div class="workflow-steps">
+            <p class="workflow-steps__title">Example: How It Works</p>
+            <div class="workflow-steps__row">
+              <button class="workflow-step" data-step="prompt" aria-pressed="false">Prompt</button>
+              <button class="workflow-step" data-step="planning" aria-pressed="false">1 - Planning</button>
+              <button class="workflow-step" data-step="act" aria-pressed="false">Act</button>
+            </div>
+          </div>
+
+          <button class="workflow-side workflow-output" data-part="result" aria-pressed="false">
+            <p class="workflow-side__title">Output: Final Product</p>
+            <p>Summary report with key findings and sources.</p>
+          </button>
+        </div>
       </div>
 
       <aside id="output" class="diagram-popup output-box" aria-live="polite">
@@ -93,7 +114,7 @@
     </section>
 
     <div class="factory-status" data-aos="fade-up" data-aos-delay="280">
-      Build progress: <span id="buildCount">0</span>/5
+      Build progress: <span id="buildCount">0</span>/3
       <div class="progress-wrap">
         <div id="progressBar" class="progress-bar"></div>
       </div>
