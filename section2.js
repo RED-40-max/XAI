@@ -1,5 +1,5 @@
 const output = document.getElementById("output");
-const partButtons = document.querySelectorAll(".agent-node, .workflow-side");
+const partButtons = document.querySelectorAll(".agent-node, .workflow-side, .workflow-phase-btn");
 const flowPaths = document.querySelectorAll(".flow-path");
 const stepButtons = document.querySelectorAll(".workflow-step");
 

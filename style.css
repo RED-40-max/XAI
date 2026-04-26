@@ -959,6 +959,10 @@ a {
   background: #eef3ff;
 }
 
+.workflow-example-box {
+  margin-top: 0.9rem;
+}
+
 .workflow-detail-row {
   margin-top: 0.6rem;
   display: flex;
@@ -980,6 +984,29 @@ a {
   flex: 0 0 180px;
   border: 2px solid #b7bbca;
   border-radius: 8px;
+}
+
+.workflow-phase-btn {
+  flex: 0 0 190px;
+  border: 2px solid #b7bbca;
+  border-radius: 8px;
+  background: #fafbff;
+  color: #23263a;
+  padding: 0.45rem 0.5rem;
+  text-align: left;
+  font-size: clamp(11px, 0.78rem, 13px);
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.workflow-phase-btn strong {
+  font-family: var(--font-small);
+}
+
+.workflow-phase-btn.is-active {
+  border-color: #2f5edb;
+  box-shadow: 0 0 0 2px rgba(47, 94, 219, 0.16);
+  background: #eef3ff;
 }
 
 .workflow-arrow {
@@ -1054,6 +1081,10 @@ a {
   }
 
   .workflow-phase {
+    flex-basis: 230px;
+  }
+
+  .workflow-phase-btn {
     flex-basis: 230px;
   }
 }
