@@ -36,6 +36,14 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="starfield.js?v=2"></script>
   <script>
+    if (window.AOS) {
+      window.AOS.init({ once: true, duration: 700 });
+    } else {
+      document.querySelectorAll("[data-aos]").forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    }
     if (window.Starfield) {
       window.Starfield.init({ canvasId: "starfield", mood: "technical" });
     }
