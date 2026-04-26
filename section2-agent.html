@@ -31,20 +31,55 @@
 
     <section class="diagram-layout" data-aos="fade-up" data-aos-delay="150">
       <div class="diagram-stage" aria-label="Agent component diagram">
-        <div class="diagram-loop" aria-hidden="true"></div>
-        <div class="diagram-lines" aria-hidden="true">
-          <span class="line l-goal-memory"></span>
-          <span class="line l-memory-tools"></span>
-          <span class="line l-tools-feedback"></span>
-          <span class="line l-feedback-goal"></span>
-          <span class="line l-safety-goal"></span>
-        </div>
+        <svg class="factory-svg" viewBox="0 0 1000 620" role="img" aria-label="Interactive AI agent architecture diagram">
+          <defs>
+            <marker id="flowArrow" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+              <path d="M0,0 L10,4 L0,8 Z" fill="#9eb4ff"></path>
+            </marker>
+          </defs>
 
-        <button class="diagram-node n-goal" data-part="goal">Planning</button>
-        <button class="diagram-node n-memory" data-part="memory">Memory</button>
-        <button class="diagram-node n-tools" data-part="tools">Tools</button>
-        <button class="diagram-node n-safety" data-part="safety">Safety</button>
-        <button class="diagram-node n-feedback" data-part="feedback">Reflection</button>
+          <path class="flow-path" data-link="gm" d="M500 180 L500 262" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="mt" d="M380 330 L266 330" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="tm" d="M620 330 L734 330" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="gf" d="M580 180 L694 126" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="fg" d="M694 164 L580 220" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="ft" d="M760 178 L760 262" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="tg" d="M684 330 L560 218" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path" data-link="mg" d="M316 330 L440 218" marker-end="url(#flowArrow)"></path>
+
+          <g class="agent-node" data-part="goal" role="button" tabindex="0" aria-label="Planning component">
+            <rect class="node-box" x="385" y="78" width="230" height="104" rx="14"></rect>
+            <text class="node-title" x="500" y="120" text-anchor="middle">Planning</text>
+            <text class="node-desc" x="500" y="148" text-anchor="middle">Break goals into executable steps</text>
+          </g>
+
+          <g class="agent-node" data-part="memory" role="button" tabindex="0" aria-label="Memory component">
+            <rect class="node-box" x="220" y="262" width="290" height="132" rx="14"></rect>
+            <text class="node-title" x="365" y="304" text-anchor="middle">Memory</text>
+            <text class="node-desc" x="365" y="332" text-anchor="middle">Store context + reuse prior results</text>
+          </g>
+
+          <g class="agent-node" data-part="tools" role="button" tabindex="0" aria-label="Tools and actions component">
+            <rect class="node-box" x="490" y="262" width="290" height="132" rx="14"></rect>
+            <text class="node-title" x="635" y="304" text-anchor="middle">Tools + Actions</text>
+            <text class="node-desc" x="635" y="332" text-anchor="middle">Search, APIs, files, outward actions</text>
+          </g>
+
+          <g class="agent-node" data-part="feedback" role="button" tabindex="0" aria-label="Reflection component">
+            <rect class="node-box" x="690" y="78" width="220" height="104" rx="14"></rect>
+            <text class="node-title" x="800" y="120" text-anchor="middle">Reflection</text>
+            <text class="node-desc" x="800" y="148" text-anchor="middle">Evaluate outcomes and adjust</text>
+          </g>
+
+          <g class="agent-node" data-part="safety" role="button" tabindex="0" aria-label="Safety guardrails component">
+            <rect class="node-box" x="88" y="78" width="220" height="104" rx="14"></rect>
+            <text class="node-title" x="198" y="120" text-anchor="middle">Safety</text>
+            <text class="node-desc" x="198" y="148" text-anchor="middle">Policies, limits, and checks</text>
+          </g>
+
+          <path class="flow-path is-secondary" data-link="sg" d="M308 130 L385 130" marker-end="url(#flowArrow)"></path>
+          <path class="flow-path is-secondary" data-link="gs" d="M385 150 L308 150" marker-end="url(#flowArrow)"></path>
+        </svg>
       </div>
 
       <aside id="output" class="diagram-popup output-box" aria-live="polite">
