@@ -1,0 +1,101 @@
+@font-face {
+  font-family: "PressStart2P";
+  src: url("../fonts/PressStart2P.ttf");
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  font-family: "PressStart2P";
+}
+
+#game-canvas {
+  outline: 1px solid white;
+}
+
+#background-canvas {
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: -1;
+}
+
+body.embed-mode {
+  background: transparent;
+}
+
+body.embed-mode #background-canvas {
+  display: none;
+}
+
+.part3-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  z-index: 100;
+  font-family: "PressStart2P", monospace;
+}
+
+.part3-modal.hidden {
+  display: none;
+}
+
+.part3-modal__card {
+  width: min(760px, 92vw);
+  max-height: 85vh;
+  overflow-y: auto;
+  background: #070d18;
+  color: #eaf0ff;
+  border: 2px solid #7aa3ff;
+  border-radius: 12px;
+  padding: 1rem 1rem 1.2rem;
+  line-height: 1.55;
+}
+
+.part3-modal__card h2 {
+  margin: 0 0 0.45rem;
+  font-size: 16px;
+}
+
+.part3-modal__card h3 {
+  margin: 0.75rem 0 0.35rem;
+  font-size: 12px;
+}
+
+.part3-modal__card p,
+.part3-modal__card li {
+  font-size: 11px;
+}
+
+.part3-modal__tagline {
+  color: #9dd0ff;
+}
+
+.part3-modal__card ul {
+  margin: 0.2rem 0 0.65rem 1.1rem;
+  padding: 0;
+}
+
+#part3-modal-continue {
+  margin-top: 0.7rem;
+  font-family: "PressStart2P", monospace;
+  font-size: 11px;
+  border: 2px solid #7aa3ff;
+  background: #0f1e38;
+  color: #eaf0ff;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  cursor: pointer;
+}
