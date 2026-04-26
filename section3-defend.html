@@ -17,52 +17,21 @@
     <p class="eyebrow">Section 3</p>
     <h1 data-aos="fade-up">Defend the Agent</h1>
     <p data-aos="fade-up" data-aos-delay="80">
-      To use agent systems safely, it is not enough to know structure. You also need to understand failure modes in practice. Move with arrow keys and press space to shoot; each bug maps to a real AI failure pattern.
+      Part 3 is embedded below. Move with arrow keys and press space to shoot. Survive all 3 rounds of bugs.
     </p>
+
     <section class="output-box" data-aos="fade-up" data-aos-delay="120">
-      <h2>Failure Modes You Are Defending Against</h2>
-      <p><strong>Prompt Injection:</strong> external input manipulates objectives and overrides original intent.</p>
-      <p><strong>Internal Agent Dysfunction:</strong> the system drifts or hallucinates reflection, then reinforces errors.</p>
-      <p><strong>Autonomy Overreach:</strong> the agent takes tool actions beyond intended limits, creating real consequences.</p>
+      <h2>Embedded Part 3 Game</h2>
+      <iframe
+        src="SpaceInvaders/index.html?embed=1"
+        title="Part 3 Defend the Agent Game"
+        class="embedded-part3"
+        loading="lazy"
+      ></iframe>
     </section>
 
-    <div class="defense-panel" data-aos="fade-up" data-aos-delay="160">
-      <canvas id="gameCanvas" width="760" height="420"></canvas>
-      <div class="game-controls">
-        <button class="button" id="startGame">Start / Restart</button>
-        <span id="scoreLabel">Score: 0</span>
-        <span id="levelLabel">Level: 1</span>
-        <span id="statusLabel">Status: Ready</span>
-      </div>
-    </div>
-
-    <section id="bug-output" class="output-box" data-aos="fade-up" data-aos-delay="240">
-      <h2>Bug Decoder</h2>
-      <p>Shoot a bug in-game to see what it represents.</p>
-    </section>
-
-    <section class="output-box" data-aos="fade-up" data-aos-delay="280">
-      <h3>What Users Can Do</h3>
-      <p><strong>Limit access:</strong> avoid giving full permissions to banking, email, and sensitive files.</p>
-      <p><strong>Stay in the loop:</strong> review outputs before acting on money, identity, or communication steps.</p>
-      <p><strong>Know when to stop:</strong> if behavior drifts, pause, reset, and re-check goals instead of blindly iterating.</p>
-    </section>
-
-    <p data-aos="fade-up" data-aos-delay="320"><a class="button" href="index.html">← Back to Main Story</a></p>
+    <p data-aos="fade-up" data-aos-delay="200"><a class="button" href="index.html">← Back to Main Story</a></p>
   </main>
-
-  <div id="bugOverlay" class="bug-overlay is-hidden" role="dialog" aria-modal="true" aria-labelledby="bugOverlayTitle">
-    <div class="bug-overlay__card">
-      <h2 id="bugOverlayTitle">Bug Event</h2>
-      <p id="bugOverlayText">A bug attacked the ship systems.</p>
-      <div class="bug-overlay__anim" aria-hidden="true">
-        <div class="bug-overlay__ship-part"></div>
-        <div class="bug-overlay__attacker"></div>
-      </div>
-      <p id="bugOverlayHint" class="bug-overlay__hint">Click Continue to return to battle.</p>
-      <button class="button" id="bugOverlayContinue">Continue</button>
-    </div>
-  </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script src="starfield.js?v=2"></script>
@@ -71,6 +40,5 @@
       window.Starfield.init({ canvasId: "starfield", mood: "technical" });
     }
   </script>
-  <script src="section3.js?v=2"></script>
 </body>
 </html>

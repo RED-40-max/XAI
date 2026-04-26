@@ -1121,6 +1121,17 @@ a {
   margin: 0 0 0.4em;
 }
 
+.embedded-part3 {
+  width: 100%;
+  max-width: 760px;
+  height: 660px;
+  border: 2px solid #2d3344;
+  border-radius: 12px;
+  background: #000;
+  display: block;
+  margin-top: 0.6rem;
+}
+
 .defense-panel {
   margin-top: 1rem;
   display: grid;
