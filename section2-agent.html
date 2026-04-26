@@ -38,8 +38,7 @@
                 <path d="M0,0 L10,4 L0,8 Z" fill="#9eb4ff"></path>
               </marker>
             </defs>
-            <path class="flow-path" data-link="m2b" d="M400 132 L470 174" marker-end="url(#flowArrow)"></path>
-            <path class="flow-path" data-link="m2b" d="M600 132 L530 174" marker-end="url(#flowArrow)"></path>
+            <path class="flow-path" data-link="m2b" d="M500 132 L500 174" marker-end="url(#flowArrow)"></path>
             <path class="flow-path" data-link="b2t" d="M310 246 L280 246" marker-end="url(#flowArrow)"></path>
             <path class="flow-path" data-link="t2b" d="M280 266 L310 266" marker-end="url(#flowArrow)"></path>
             <path class="flow-path" data-link="b2p" d="M690 246 L720 246" marker-end="url(#flowArrow)"></path>
@@ -61,14 +60,9 @@
             <span class="node-sub">(Decision Making)</span>
           </button>
 
-          <button class="agent-node card-mem-short" data-part="memory" aria-pressed="false">
-            <span class="node-title">Short-term Memory</span>
-            <span class="node-sub">(Working Context)</span>
-          </button>
-
-          <button class="agent-node card-mem-long" data-part="memory" aria-pressed="false">
-            <span class="node-title">Long-term Memory</span>
-            <span class="node-sub">(Persistent Knowledge)</span>
+          <button class="agent-node card-memory" data-part="memory" aria-pressed="false">
+            <span class="node-title">MEMORY</span>
+            <span class="node-sub">(Store &amp; Retrieve)</span>
           </button>
 
           <button class="agent-node card-brain" data-part="safety" aria-pressed="false">
@@ -76,7 +70,7 @@
             <span class="node-sub">Controller / Decision Core</span>
           </button>
 
-          <button class="agent-node card-action" data-part="tools" aria-pressed="false">
+          <button class="agent-node card-action" data-part="action" aria-pressed="false">
             <span class="node-title">Action Execution</span>
             <span class="node-sub">Carry out decisions</span>
           </button>

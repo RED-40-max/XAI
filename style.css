@@ -846,17 +846,10 @@ a {
   min-height: 176px;
 }
 
-.card-mem-short {
-  left: 31%;
+.card-memory {
+  left: 34%;
   top: 8%;
-  width: 18%;
-  min-height: 82px;
-}
-
-.card-mem-long {
-  right: 31%;
-  top: 8%;
-  width: 18%;
+  width: 32%;
   min-height: 82px;
 }
 
@@ -1041,16 +1034,10 @@ a {
     top: 24%;
   }
 
-  .card-mem-short {
-    left: 8%;
+  .card-memory {
+    left: 12%;
     top: 8%;
-    width: 40%;
-  }
-
-  .card-mem-long {
-    right: 8%;
-    top: 8%;
-    width: 40%;
+    width: 76%;
   }
 
   .card-brain {

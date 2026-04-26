@@ -23,69 +23,143 @@ const partInfo = {
     step: "prompt"
   },
   goal: {
-    title: "PLANNING (Decomposition Engine)",
-    what: "Planning breaks a goal into smaller steps so the agent can act systematically. Planning enables complex behavior, but introduces compounding risk. A flawed plan does not fail once; it propagates across every step, making errors harder to detect as they scale (Weng, 2023).",
-    analogy: "Like writing a recipe before cooking. One wrong instruction can throw off the entire meal.",
+    title: "PLANNING (Decision Making / Decomposition)",
+    what: "Planning breaks the goal into structured steps the system can follow.",
+    analogy: "Like writing a recipe before cooking - every step builds on the last.",
     examples: [
-      "Break a research task into search, compare, summarize",
-      "Order steps before tool usage",
-      "Set subgoals and checkpoints"
+      "Goal decomposition",
+      "Subgoal creation",
+      "Self-critique before acting",
+      "Step-by-step reasoning"
     ],
-    risk: "Bad planning creates cascading errors: each later step executes confidently on flawed assumptions.",
+    scenario: [
+      "Analyze message tone",
+      "Retrieve past communication patterns",
+      "Generate multiple reply options",
+      "Evaluate which is most appropriate"
+    ],
+    fail: [
+      "Misses a step (no tone analysis -> bad response)",
+      "Overcomplicates the process",
+      "Uses wrong assumptions ('daughter is upset' when she is not)",
+      "Bad plan causes downstream failures"
+    ],
     links: ["b2p", "p2b", "p2a"],
     step: "planning"
   },
   memory: {
-    title: "MEMORY (Context + Persistence)",
-    what: "Memory stores and retrieves information, including short-term context and long-term external data. Memory allows agents to build on past steps, but also to reinforce mistakes. Incorrect or outdated memory can be reused repeatedly, amplifying errors across actions and leading to unintended outcomes like misinformation or data exposure (Weng, 2023).",
-    analogy: "Like using a shared notebook. If one bad note is written early, every later decision repeats it.",
+    title: "MEMORY (Short-term + Long-term Context)",
+    what: "Memory stores and retrieves information to guide decisions.",
+    analogy: "Like a notebook you keep referencing - if something wrong is written, it keeps affecting decisions.",
     examples: [
-      "Store recent conversation context",
-      "Retrieve prior preferences or constraints",
-      "Track intermediate results across steps"
+      "Short-term: current conversation",
+      "Short-term: detected emotions",
+      "Short-term: draft responses",
+      "Long-term: daughter's preferences",
+      "Long-term: communication patterns",
+      "Long-term: past successful responses",
+      "Long-term: sensitive topics"
     ],
-    risk: "Outdated or poisoned memory can be repeatedly reused, causing persistent misinformation and drift.",
+    scenario: [
+      "Remembers: she prefers direct communication",
+      "Remembers: sarcasm caused conflict before"
+    ],
+    fail: [
+      "Stores incorrect assumptions ('she is always angry')",
+      "Uses outdated information",
+      "Leaks sensitive data",
+      "Reinforces bad patterns repeatedly"
+    ],
     links: ["m2b"],
     step: "planning"
   },
   tools: {
     title: "TOOLS (External Action Layer)",
-    what: "Tools allow the agent to act beyond text generation (APIs, search, code execution, financial systems). Tools make agents powerful, but also introduce real world consequences. As agents gain access to systems (banking, files, APIs), mistakes move to real impacts: financial, operational, or security-related (CBA, 2026).",
-    analogy: "Like handing someone your keys, card, and phone to run errands - useful, but high impact if misunderstood.",
+    what: "Tools execute real actions - searching, analyzing, calculating, and generating outputs.",
+    analogy: "Like giving someone your phone, credit card, and access to your accounts to get things done.",
     examples: [
-      "Use web search and APIs",
-      "Write/read files and send updates",
-      "Trigger actions in external platforms"
+      "Sentiment Analyzer: detect tone",
+      "Web Search: find information",
+      "Knowledge Base: parenting advice",
+      "Calendar: schedule follow-ups"
     ],
-    risk: "Over-permissioned or misused tools can cause real-world damage: leaks, wrong transactions, or unsafe actions.",
-    links: ["b2t", "t2b", "b2a", "t2a", "p2a"],
+    scenario: [
+      "Sentiment analyzer detects frustration",
+      "Knowledge base suggests calm communication strategies",
+      "Message generator drafts replies"
+    ],
+    fail: [
+      "Wrong output (misclassifies tone)",
+      "Executes wrong action (sends message instead of drafting)",
+      "Causes real-world consequences",
+      "Blindly trusts tool output"
+    ],
+    links: ["b2t", "t2b", "t2a"],
     step: "act"
   },
   safety: {
-    title: "AGENT BRAIN (Controller / Decision Core)",
-    what: "The controller coordinates planning, memory, tools, and reflection. It decides what to do next and keeps the full loop aligned.",
-    analogy: "Like a project manager who delegates tasks, checks context, and keeps the full workflow aligned.",
+    title: "BRAIN (Decision Core / Controller)",
+    what: "The brain is the central decision-maker. It decides what to do next by coordinating planning, tools, memory, and reflection.",
+    analogy: "Like a manager directing a team - telling planning what to break down, tools what to execute, and memory what to recall.",
     examples: [
-      "Select next action from plan",
-      "Route requests to tools",
-      "Integrate feedback from reflection"
+      "Decides to use sentiment analyzer to understand tone",
+      "Chooses knowledge base for parenting advice",
+      "Determines whether to generate a reply or ask for more context"
     ],
-    risk: "If core reasoning drifts, the whole system can appear coherent while repeatedly making bad decisions.",
+    scenario: [
+      "Sees the message and decides: analyze tone first, then generate response options."
+    ],
+    fail: [
+      "Misreads the situation (serious vs casual)",
+      "Picks the wrong tool",
+      "Hallucinates confidence",
+      "Relies on incorrect memory"
+    ],
     links: ["m2b", "b2t", "t2b", "b2p", "p2b", "b2a"],
     step: "planning"
   },
   feedback: {
     title: "REFLECTION (Self-Correction Loop)",
-    what: "Reflection allows the agent to evaluate past actions and adjust future behavior. Reflection enables adaptation, but can fail. Agents may generate incorrect self-feedback ('hallucinatory reflection'), reinforcing bad decisions instead of correcting them (Shinn et al., 2023). Over time, this creates self-reinforcing failure loops.",
-    analogy: "Like reviewing a test - good reflection catches mistakes; bad reflection doubles down on them.",
+    what: "Reflection evaluates what just happened and adjusts future behavior.",
+    analogy: "Like reviewing your answers after a test - but sometimes convincing yourself your wrong answer is right.",
     examples: [
-      "Evaluate output quality and relevance",
-      "Revise the plan after failed actions",
-      "Update memory with corrective notes"
+      "Evaluating generated replies",
+      "Comparing outcomes to past results",
+      "Adjusting tone and strategy"
     ],
-    risk: "Reflection can become corrupt when false self-critique is treated as truth, reinforcing failure loops.",
+    scenario: [
+      "Reviews: was that response too harsh?",
+      "Adjusts by generating softer alternatives"
+    ],
+    fail: [
+      "Thinks a bad response was good",
+      "Reinforces incorrect behavior",
+      "Fails to catch obvious mistakes",
+      "Creates a loop of worsening decisions"
+    ],
     links: ["p2b", "b2p", "p2a", "p2r", "r2p"],
     step: "planning"
+  },
+  action: {
+    title: "ACTION EXECUTION (Where it actually happens)",
+    what: "This is where planned steps are actually carried out using tools.",
+    analogy: "Like the operations team that executes the approved plan in the real world.",
+    examples: [
+      "Runs sentiment analysis",
+      "Generates replies",
+      "Produces insights/graphs",
+      "Suggests next actions"
+    ],
+    scenario: [
+      "Executes the selected tools in order and returns concrete outputs."
+    ],
+    fail: [
+      "Runs the correct plan too aggressively",
+      "Executes on stale context",
+      "Produces outputs without proper verification"
+    ],
+    links: ["b2a", "t2a", "p2a"],
+    step: "act"
   },
   result: {
     title: "OUTPUT (Final Product)",
@@ -105,7 +179,7 @@ const partInfo = {
 const stepToParts = {
   prompt: ["prompt"],
   planning: ["goal", "memory", "safety", "feedback"],
-  act: ["tools", "result"]
+  act: ["tools", "action", "result"]
 };
 
 function setActiveStep(stepKey) {
@@ -160,7 +234,14 @@ function renderPart(partKey, selectionId) {
     <ul>
       ${(part.examples || []).map((item) => `<li>${item}</li>`).join("")}
     </ul>
-    <p><strong>What could go wrong / corruption risk:</strong> ${part.risk}</p>
+    <p><strong>In the scenario</strong></p>
+    <ul>
+      ${(part.scenario || []).map((item) => `<li>${item}</li>`).join("")}
+    </ul>
+    <p><strong>How it can fail / what could go wrong</strong></p>
+    <ul>
+      ${(part.fail || []).map((item) => `<li>${item}</li>`).join("")}
+    </ul>
     <p><strong>Loop:</strong> Plan >> Act (Tools) >> Store (Memory) >> Reflect >> Update >> Repeat</p>
   `;
 
