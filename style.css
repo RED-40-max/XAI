@@ -1122,14 +1122,17 @@ a {
 }
 
 .embedded-part3 {
-  width: 100%;
-  max-width: 760px;
-  height: 660px;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 100%;
+  height: min(78vh, 760px);
+  min-height: 640px;
   border: 2px solid #2d3344;
   border-radius: 12px;
   background: #000;
   display: block;
   margin-top: 0.6rem;
+  overflow: hidden;
 }
 
 .defense-panel {

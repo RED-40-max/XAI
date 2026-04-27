@@ -32,10 +32,19 @@ canvas {
 
 body.embed-mode {
   background: transparent;
+  display: block;
+  overflow: hidden;
 }
 
 body.embed-mode #background-canvas {
   display: none;
+}
+
+body.embed-mode #game-canvas {
+  display: block;
+  margin: 0 auto;
+  width: 700px;
+  height: 600px;
 }
 
 .part3-modal {
