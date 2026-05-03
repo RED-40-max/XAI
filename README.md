@@ -1,5 +1,7 @@
 # XAI Interactive Blog
 
+https://red-40-max.github.io/XAI/
+
 Interactive AI explainer built with plain HTML, CSS, and JavaScript.  
 The project combines narrative scroll sections with two interactive modules:
 - **Section 2:** an interactive agent-system diagram (`section2-agent.html` + `section2.js`)
